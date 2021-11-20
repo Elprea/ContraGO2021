@@ -27,7 +27,7 @@
 Contributing
 ============
 
-Welcome to ``CONTRA_GOAPP`` contributor's guide.
+Welcome to ``CONTRAGO`` contributor's guide.
 
 This document focuses on getting any potential contributor familiarized
 with the development processes, but `other kinds of contributions`_ are also
@@ -46,7 +46,7 @@ guidelines.
 Issue Reports
 =============
 
-If you experience bugs or general issues with ``CONTRA_GOAPP``, please have a look
+If you experience bugs or general issues with ``CONTRAGO``, please have a look
 on the `issue tracker`_. If you don't see anything useful there, please feel
 free to fire an issue report.
 
@@ -65,10 +65,10 @@ you help us to identify the root cause of the issue.
 Documentation Improvements
 ==========================
 
-You can help improve ``CONTRA_GOAPP`` docs by making them more readable and coherent, or
+You can help improve ``CONTRAGO`` docs by making them more readable and coherent, or
 by adding missing information and correcting mistakes.
 
-``CONTRA_GOAPP`` documentation uses Sphinx_ as its main documentation compiler.
+``CONTRAGO`` documentation uses Sphinx_ as its main documentation compiler.
 This means that the docs are kept in the same repository as the project code, and
 that any documentation update is done in the same way was a code contribution.
 
@@ -80,7 +80,7 @@ that any documentation update is done in the same way was a code contribution.
 
    .. tip::
       Please notice that the `GitHub web interface`_ provides a quick way of
-      propose changes in ``CONTRA_GOAPP``'s files. While this mechanism can
+      propose changes in ``CONTRAGO``'s files. While this mechanism can
       be tricky for normal code contributions, it works perfectly fine for
       contributing to the docs, and can be quite handy.
 
