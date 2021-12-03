@@ -33,10 +33,10 @@ CONTRAGO
 ============
 
 
-    ContraGO is a unique software application that allows for all types of contractors 
-    to record measurements of a particular job, materials required for the job, and the 
-    total cost, to produce a clean and organized document with all the information provided 
-    filled in. The software helps contractors with various jobs organize all details into one single place. 
+    ContraGO is a unique software application that allows for all types of contractors
+    to record measurements of a particular job, materials required for the job, and the
+    total cost, to produce a clean and organized document with all the information provided
+    filled in. The software helps contractors with various jobs organize all details into one single place.
 
 
 .. _pyscaffold-notes:
