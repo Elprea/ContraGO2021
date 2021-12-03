@@ -155,3 +155,308 @@ def ContraGO_Estimate_Module():
         font=("AplikaziaMFW Bold", 24 * -1)
     )
     
+    
+    
+    # Entry_2 Label And Entry Field
+    entry_2 = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        highlightthickness=0
+    )
+    entry_2.place(
+        x=622.0,
+        y=645.0,
+        width=181.0,
+        height=37.0
+    )
+    
+    canvas.create_text(
+        622.0,
+        595.0,
+        anchor="nw",
+        text="Material Cost",
+        fill="#000000",
+        font=("AplikaziaMFW Bold", 24 * -1)
+    )
+    
+    
+    
+    
+    # Entry_3 Label And Entry Field
+    entry_3 = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        highlightthickness=0
+    )
+    entry_3.place(
+        x=622.0,
+        y=766.0,
+        width=181.0,
+        height=37.0
+    )
+    
+    canvas.create_text(
+        622.0,
+        716.0,
+        anchor="nw",
+        text="Gutter Cost",
+        fill="#000000",
+        font=("AplikaziaMFW Bold", 24 * -1)
+    )
+    
+    
+    
+    # Entry_4 Label And Entry Field
+    entry_4 = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        highlightthickness=0
+    )
+    entry_4.place(
+        x=857.0,
+        y=645.0,
+        width=181.0,
+        height=37.0
+    )
+    
+    canvas.create_text(
+        857.0,
+        595.0,
+        anchor="nw",
+        text="Demolition Cost",
+        fill="#000000",
+        font=("AplikaziaMFW Bold", 24 * -1)
+    )
+    
+    
+    
+    
+    # Entry_5 Label And Entry Field
+    entry_5 = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        highlightthickness=0
+    )
+    entry_5.place(
+        x=1093.0,
+        y=645.0,
+        width=181.0,
+        height=37.0
+    )
+    
+    canvas.create_text(
+        1093.0,
+        595.0,
+        anchor="nw",
+        text="Labor Cost",
+        fill="#000000",
+        font=("AplikaziaMFW Bold", 24 * -1)
+    )
+    
+    
+    
+    # Entry_6 Label And Entry Field
+    entry_6 = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        highlightthickness=0
+    )
+    entry_6.place(
+        x=622.0,
+        y=205.0,
+        width=773.0,
+        height=373.0
+    )
+    
+    canvas.create_text(
+        622.0,
+        160.0,
+        anchor="nw",
+        text="Job Description",
+        fill="#000000",
+        font=("AplikaziaMFW Bold", 24 * -1)
+    )
+    
+    
+    
+    # GUI Canvas & Placement
+    canvas.create_text(
+        34.0,
+        93.0,
+        anchor="nw",
+        text="Client & Contractor Details",
+        fill="#000000",
+        font=("AplikaziaMFW Bold", 24 * -1)
+    )
+    
+    canvas.create_text(
+        607.0,
+        93.0,
+        anchor="nw",
+        text="Contractor Measurements",
+        fill="#000000",
+        font=("AplikaziaMFW Bold", 24 * -1)
+    )
+    
+    
+    
+    # Entry_7 Label And Entry Field
+    entry_7 = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        highlightthickness=0
+    )
+    entry_7.place(
+        x=75.0,
+        y=309.0,
+        width=361.0,
+        height=39.0
+    )
+    
+    canvas.create_text(
+        59.0,
+        259.0,
+        anchor="nw",
+        text="Client Address",
+        fill="#000000",
+        font=("AplikaziaMFW Bold", 24 * -1)
+    )
+    
+    
+    
+    # Entry_8 Label And Entry Field
+    entry_8 = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        highlightthickness=0
+    )
+    entry_8.place(
+        x=75.0,
+        y=428.0,
+        width=361.0,
+        height=39.0
+    )
+    
+    canvas.create_text(
+        59.0,
+        378.0,
+        anchor="nw",
+        text="Client City",
+        fill="#000000",
+        font=("AplikaziaMFW Bold", 24 * -1)
+    )
+    
+    
+    
+    # Entry_9 Label And Entry Field
+    entry_9 = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        highlightthickness=0
+    )
+    entry_9.place(
+        x=75.0,
+        y=554.0,
+        width=361.0,
+        height=39.0
+    )
+    
+    canvas.create_text(
+        59.0,
+        504.0,
+        anchor="nw",
+        text="Client Zipcode",
+        fill="#000000",
+        font=("AplikaziaMFW Bold", 24 * -1)
+    )
+    
+    
+    
+    # Entry_10 Label And Entry Field
+    entry_10 = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        highlightthickness=0
+    )
+    entry_10.place(
+        x=75.0,
+        y=663.0,
+        width=361.0,
+        height=39.0
+    )
+    
+    canvas.create_text(
+        59.0,
+        613.0,
+        anchor="nw",
+        text="Client State",
+        fill="#000000",
+        font=("AplikaziaMFW Bold", 24 * -1)
+    )
+    
+    
+    
+    # Entry_11 Label And Entry Field
+    entry_11 = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        highlightthickness=0
+    )
+    entry_11.place(
+        x=73.0,
+        y=772.0,
+        width=361.0,
+        height=39.0
+    )
+    
+    canvas.create_text(
+        57.0,
+        722.0,
+        anchor="nw",
+        text="Client Phone Number",
+        fill="#000000",
+        font=("AplikaziaMFW Bold", 24 * -1)
+    )
+    
+    canvas.create_text(
+        21.0,
+        10.0,
+        anchor="nw",
+        text="Contract Making ",
+        fill="#000000",
+        font=("AplikaziaMFW Bold", 50 * -1)
+    )
+    
+    
+    
+    # Submit Button 
+    button_1 = Button(
+        text="Submit",
+        borderwidth=0,
+        highlightthickness=0,
+        command=submitForm,
+        relief="flat"
+    )
+    button_1.place(
+        x=622.0,
+        y=881.0,
+        width=237.0,
+        height=63.0
+    )
+    
+    canvas.create_text(
+        625.0,
+        206.0,
+        anchor="nw",
+        text="",
+        fill="#000000",
+        font=("AplikaziaMFW Bold", 36 * -1)
+    )
+    
+    
+    window.resizable(False, False)
+    window.mainloop()
+
+
+if __name__ == "__main__":
+    ContraGO_Estimate_Module()
