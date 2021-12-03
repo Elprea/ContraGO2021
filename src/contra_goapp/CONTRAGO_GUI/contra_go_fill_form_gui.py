@@ -14,7 +14,7 @@ from tkinter import Tk, Canvas, Entry, Text, Button
 
 from mailmerge import MailMerge
 
-template = "C:\\Users\\danie\\OneDrive\\Desktop\\ContractGODOCX\\ContraGO_ContractEstimate.docx"
+template = "C:\\Users\\danie\\OneDrive\\Desktop\\ContraGO_ContractEstimate.docx"
 
 document = MailMerge(template)
 
@@ -31,6 +31,8 @@ def ContraGO_Estimate_Module():
         Output:
           .docx editable file 
         """
+        
+        final_estimate = str(int(entry_2.get()) + int(entry_3.get()) + int(entry_4.get())  + int(entry_5.get()))
         
         document.merge(
             
@@ -52,11 +54,11 @@ def ContraGO_Estimate_Module():
             
             #Job Information 
             JobDescription=entry_6.get(),
-            DemolitionCost=entry_4.get(),
             MaterialCost=entry_2.get(),
-            LaborCost=entry_5.get(),
             GutterCost=entry_3.get(),
-            EstimateTotal='40000')
+            DemolitionCost=entry_4.get(),
+            LaborCost=entry_5.get(),
+            EstimateTotal=final_estimate)
     
     
         document.write('Roofing_ESTIMATE.docx')
