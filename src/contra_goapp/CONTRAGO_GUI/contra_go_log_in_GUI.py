@@ -1,12 +1,15 @@
 
-
-
 from tkinter import Tk, Canvas, Entry, Button, PhotoImage, Text
 
-import sys 
+import sys
 
-print(sys.path)
+sys.path.append('/.../contra_goapp/CONTRAGO_DB/contra_go_log_in_db.py')
 
+import src.contra_goapp.CONTRAGO_DB.contra_go_log_in_db  as db
+
+
+
+db.connect()
 
 window = Tk()
 
@@ -106,9 +109,10 @@ canvas.create_text(
 
 
 button_1 = Button(
+    text="Submit",
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("dwdw"),
+    command=lambda: db.validationUser(entry_1, entry_2),
     relief="flat"
 )
 

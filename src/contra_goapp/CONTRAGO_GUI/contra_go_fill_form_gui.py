@@ -71,7 +71,9 @@ def ContraGO_Estimate_Module():
     window = Tk()
     
     window.geometry("1440x1024")
+    
     window.configure(bg = "#FFFFFF")
+    
     
     # GUI Canvas & Placement
     canvas = Canvas(
