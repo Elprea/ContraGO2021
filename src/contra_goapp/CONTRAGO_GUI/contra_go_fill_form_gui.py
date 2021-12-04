@@ -14,9 +14,11 @@ from tkinter import Tk, Canvas, Entry, Text, Button
 
 from mailmerge import MailMerge
 
-template = ".\\contrago2021\\src\\contra_goapp\\assets\\ContraGO_ContractEstimate.docx"
-
-document = MailMerge(template)
+import os
+cwd=os.getcwd()
+template = "\\assets\\ContraGO_ContractEstimate.docx"
+path=cwd+template
+document = MailMerge(path)
 
 
 def ContraGO_Estimate_Module(): 
