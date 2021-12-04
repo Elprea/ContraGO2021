@@ -14,7 +14,7 @@ from tkinter import Tk, Canvas, Entry, Text, Button
 
 from mailmerge import MailMerge
 
-template = "C:\\Users\\danie\\OneDrive\\Desktop\\ContraGO_ContractEstimate.docx"
+template = ".\\contrago2021\\src\\contra_goapp\\assets\\ContraGO_ContractEstimate.docx"
 
 document = MailMerge(template)
 

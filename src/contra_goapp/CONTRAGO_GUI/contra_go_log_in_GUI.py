@@ -3,13 +3,9 @@ from tkinter import Tk, Canvas, Entry, Button, PhotoImage, Text
 
 import sys
 
-sys.path.append('/.../contra_goapp/CONTRAGO_DB/contra_go_log_in_db.py')
-
-import src.contra_goapp.CONTRAGO_DB.contra_go_log_in_db  as db
 
 
 
-db.connect()
 
 window = Tk()
 
