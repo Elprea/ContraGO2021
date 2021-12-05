@@ -1,14 +1,11 @@
 
 from tkinter import Tk, Canvas, Entry, Button, PhotoImage, Text
 
-import sys
+import CONTRAGO_DB.contra_go_log_in_db as db
 
-
-
-
+db.connect()
 
 window = Tk()
-
 
 window.geometry("1152x700")
 window.configure(bg = "#AEC0FF")
@@ -108,7 +105,7 @@ button_1 = Button(
     text="Submit",
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: db.validationUser(entry_1, entry_2),
+    command=lambda: db.registerUser(entry_1, entry_2),
     relief="flat"
 )
 

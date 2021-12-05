@@ -15,10 +15,12 @@ from tkinter import Tk, Canvas, Entry, Text, Button
 from mailmerge import MailMerge
 
 import os
-cwd=os.getcwd()
-template = "\\assets\\ContraGO_ContractEstimate.docx"
-path=cwd+template
-document = MailMerge(path)
+
+
+template = os.path.join(os.path.dirname(__file__), 'assets','ContraGO_ContractEstimate.docx')
+
+
+document = MailMerge(template)
 
 
 def ContraGO_Estimate_Module(): 
@@ -62,8 +64,8 @@ def ContraGO_Estimate_Module():
             LaborCost=entry_5.get(),
             EstimateTotal=final_estimate)
     
-    
-        document.write('Roofing_ESTIMATE.docx')
+        
+        document.write(str(entry_7.get() + entry_1.get()) +'ESTIMATE.docx')
     
     
     
