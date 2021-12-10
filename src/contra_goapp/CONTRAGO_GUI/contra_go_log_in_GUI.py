@@ -1,86 +1,167 @@
-from tkinter import Button, Canvas, Entry, PhotoImage, Text, Tk
 
-import CONTRAGO_DB.contra_go_log_in_db as db
-
-db.connect()
-
-window = Tk()
-
-window.geometry("1152x700")
-window.configure(bg="#AEC0FF")
+from tkinter import Button, Canvas, Entry, PhotoImage, Text, Tk, Toplevel
 
 
-canvas = Canvas(
-    window,
-    bg="#AEC0FF",
-    height=700,
-    width=1152,
-    bd=0,
-    highlightthickness=0,
-    relief="ridge",
-)
 
-canvas.place(x=0, y=0)
-canvas.create_rectangle(0.0, 0.0, 1109.0, 700.0, fill="#AEC0FF", outline="")
-
-canvas.create_text(
-    609.0,
-    75.0,
-    anchor="nw",
-    text="ContraGO",
-    fill="#000000",
-    font=("AplikaziaMFW Bold", 50 * -1),
-)
-
-canvas.create_text(
-    609.0,
-    142.0,
-    anchor="nw",
-    text="Log In",
-    fill="#000000",
-    font=("AplikaziaMFW Bold", 36 * -1),
-)
+def contrago_register():
+    
+    window1 = Toplevel(window)
+    
+    window1.title("Contra - GO Register")
+    
 
 
-entry_1 = Entry(window, bd=0, bg="#6A79FD", highlightthickness=0)
-entry_1.place(x=643.0, y=328.0, width=320.0, height=34.0)
 
+def contrago_log_in(): 
+    
+    global window
+    
+    window = Tk()
+    
+    
+    """ 
+    Tkinter Window Dimensions 
+    """ 
+    window.geometry("1152x700")
+    window.configure(bg="#AEC0FF")
+    
+    
+    
+    """ 
+    Tkinter Canvas Create
+    """ 
+    canvas = Canvas(
+        window,
+        bg="#AEC0FF",
+        height=700,
+        width=1152,
+        bd=0,
+        highlightthickness=0,
+        relief="ridge",
+    )
+    
+    canvas.place(x=0, y=0)
+    canvas.create_rectangle(0.0, 0.0, 1109.0, 700.0, fill="#AEC0FF", outline="")
+    
+    canvas.create_text(
+        609.0,
+        75.0,
+        anchor="nw",
+        text="ContraGO",
+        fill="#000000",
+        font=("AplikaziaMFW Bold", 50 * -1),
+    )
+    
+    canvas.create_text(
+        609.0,
+        142.0,
+        anchor="nw",
+        text="Log In",
+        fill="#000000",
+        font=("AplikaziaMFW Bold", 36 * -1),
+    )
+    
+    
+    
+    
+    """ 
+    Tkinter GUI Entry Fields 
+    Entry Fields: 
+        
+    """
+    username = Entry(
+        bd=0,
+        bg="#6A79FD",
+        highlightthickness=0
+    )
+    username.place(
+        x=643.0,
+        y=328.0,
+        width=320.0,
+        height=34.0
+    )
+    
+    
+    password = Entry(
+        bd=0,
+        bg="#6A79FD",
+        highlightthickness=0
+    )
+    password.place(
+        x=643.0,
+        y=430.0,
+        width=320.0,
+        height=34.0
+    )
+    
+    
+    """ 
+    Tkinter GUI Title 
+    """ 
+    canvas.create_text(
+        609.0,
+        284.0,
+        anchor="nw",
+        text="Username",
+        fill="#000000",
+        font=("AplikaziaMFW Bold", 24 * -1),
+    )
+    
+    canvas.create_text(
+        609.0,
+        383.0,
+        anchor="nw",
+        text="Password\n",
+        fill="#000000",
+        font=("AplikaziaMFW Bold", 24 * -1),
+    )
+    
+    
+    
+    
+    """ 
+    Tkinter GUI Buttons
+    Buttons: 
+        login 
+        Register 
+    """ 
+    # Log In Button
+    loginBttn = Button(
+        text="Submit",
+        borderwidth=0,
+        highlightthickness=0,
+        command=lambda: print('daw'),
+        relief="flat",
+    )
+    
+    loginBttn.place(
+        x=640.079833984375, 
+        y=508.1396484375, 
+        width=133.920166015625, 
+        height=46.8603515625
+    )
+    
+    
+    
+    # Register Button
+    registerBttn = Button(
+        text="Register",
+        borderwidth=0,
+        highlightthickness=0,
+        command=lambda: contrago_register(),
+        relief="flat",
+    )
+    
+    registerBttn.place(
+        x=830.079833984375, 
+        y=508.1396484375, 
+        width=133.920166015625, 
+        height=46.8603515625
+    )
+    
+    
+    window.resizable(False, False)
+    window.mainloop()
 
-entry_2 = Entry(window, bd=0, bg="#6A79FD", highlightthickness=0)
-entry_2.place(x=643.0, y=430.0, width=320.0, height=34.0)
-
-
-canvas.create_text(
-    609.0,
-    284.0,
-    anchor="nw",
-    text="Username",
-    fill="#000000",
-    font=("AplikaziaMFW Bold", 24 * -1),
-)
-
-canvas.create_text(
-    609.0,
-    383.0,
-    anchor="nw",
-    text="Password\n",
-    fill="#000000",
-    font=("AplikaziaMFW Bold", 24 * -1),
-)
-
-
-button_1 = Button(
-    text="Submit",
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: db.registerUser(entry_1, entry_2),
-    relief="flat",
-)
-
-button_1.place(
-    x=720.079833984375, y=508.1396484375, width=133.920166015625, height=46.8603515625
-)
-
-
-window.resizable(False, False)
-window.mainloop()
+if __name__ == "__main__":
+    contrago_log_in()
