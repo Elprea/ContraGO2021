@@ -10,8 +10,39 @@ tied to the users account
 """
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 
+from contra_goapp.CONTRAGO_GUI.contra_go_fill_form_gui import ContraGO_Estimate_Module
+
+def openFillForm(): 
+    
+    """openFillForm()
+
+    Opens new fill form gui and destroy 
+    previous process 
+
+    Args:
+      N/A
+
+
+    """
+    window.destroy()
+    ContraGO_Estimate_Module()
+    
+    
 
 def contrago_mainpage(): 
+    
+    """contrago_mainpage()
+
+    Executes the mainpage gui module for 
+    user view contract history and contract making module 
+
+    Args:
+      N/A
+
+
+    """
+    
+    global window 
     
     window = Tk()
     
@@ -84,7 +115,7 @@ def contrago_mainpage():
         bg="#BD8000",
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_2 clicked"),
+        command=lambda: openFillForm(),
         relief="flat"
     )
     createContractBttn.place(

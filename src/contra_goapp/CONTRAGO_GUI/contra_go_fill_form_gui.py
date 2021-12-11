@@ -40,14 +40,7 @@ def ContraGO_Estimate_Module():
           .docx editable file
         """
        
-        
-        contractHistoryInsert(clientName.get(), 
-                              clientPhoneN.get(), 
-                              clientAdd.get(), 
-                              clientCity.get(), 
-                              clientZip.get(),
-                              clientState.get(), 
-                              "Daniel")
+    
         
         final_estimate = str(int(matCost.get()) + int(demoCost.get()) + int(laborCost.get()))
 
@@ -65,14 +58,26 @@ def ContraGO_Estimate_Module():
             ClientState=clientState.get(),
             ZipCode=clientZip.get(),
             # Job Information
-            JobDescription=jobDes.get(0, END),
+            JobDescription=jobDes.get("1.0", END),
             MaterialCost=matCost.get(),
             DemolitionCost=demoCost.get(),
             LaborCost=laborCost.get(),
-            EstimateTotal=final_estimate,
+            EstimateTotal=str(final_estimate),
         )
-
+        
         document.write(str(clientAdd.get() + clientName.get()) + "ESTIMATE.docx")
+        
+        contractHistoryInsert(clientName.get(), 
+                              clientPhoneN.get(), 
+                              clientAdd.get(), 
+                              clientCity.get(), 
+                              clientZip.get(),
+                              clientState.get(), 
+                              "Daniel", 
+                              str(clientAdd.get() + clientName.get()) + "ESTIMATE.docx")
+        
+        
+        
 
     
     def clearFields(): 

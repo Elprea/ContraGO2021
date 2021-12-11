@@ -48,10 +48,18 @@ def registerUser(username, password):
     conn = sqlite3.connect("ContraG0User.db")
 
     cursor = conn.cursor()
+    
+    cursor.execute(
+        """
+                   CREATE TABlE IF NOT EXISTS ContraG0_UInformation (
+                       username text,
+                       password text
+                       )"""
+    )
 
     cursor.execute(
         "INSERT INTO ContraG0_UInformation VALUES (:username, :password)",
-        {"username": username.get(), "password": password.get()},
+        {"username": username, "password": password},
     )
 
     cursor.execute(""" SELECT * FROM ContraG0_UInformation """)
@@ -83,16 +91,25 @@ def validationUser(username, password):
     conn = sqlite3.connect("ContraG0User.db")
 
     cursor = conn.cursor()
+    
+    cursor.execute(
+        """
+                   CREATE TABlE IF NOT EXISTS ContraG0_UInformation (
+                       username text,
+                       password text
+                       )"""
+    )
 
     cursor.execute(
         "SELECT username from ContraG0_UInformation WHERE username= :username AND Password = :password",
-        {"username": username.get(), "password": password.get()},
+        {"username": username, "password": password},
     )
 
     if not cursor.fetchone():
-
-        print("Login failed")
+        # Incorrect credentials 
+        return 0
+        
 
     else:
-
-        print("Welcome")
+        # Correct credentials 
+        return 1

@@ -50,17 +50,22 @@ def connect():
 
 
  
-def contractHistoryInsert(clientName, clientPhoneNumber, clientAddress, clientCity, clientZipcode, clientState, contractorName): 
+def contractHistoryInsert(clientName, clientPhoneNumber, clientAddress, clientCity, clientZipcode, clientState, contractorName, contractName): 
     
     """ContraGOContractHistory(clientName, clientPhoneNumber, 
                             clientAddress, clientCity, clientZipcode, 
-                            clientState, contractorName)
+                            clientState, contractorName, contractName)
     
-    Inserts new tuple to database for new registered user
+    Inserts new tuple to database for a new contract and client information 
 
     Args:
       clientName: A string value 
       clientAddress: A string value 
+      clientCity: A string value
+      clientZipcode: A string value
+      clientState: A string value 
+      contractorName: A string value
+      contractName: A string value
 
 
     """
@@ -78,10 +83,11 @@ def contractHistoryInsert(clientName, clientPhoneNumber, clientAddress, clientCi
                        clientCity text, 
                        clientZipcode text, 
                        clientState text, 
-                       contractorName text
+                       contractorName text,
+                       contractName text
                        )""")
 
-    cursor.execute("INSERT INTO ContraGOContractHistory VALUES (:clientName, :clientPhoneNumber, :clientAddress, :clientCity, :clientZipcode, :clientState, :contractorName)",
+    cursor.execute("INSERT INTO ContraGOContractHistory VALUES (:clientName, :clientPhoneNumber, :clientAddress, :clientCity, :clientZipcode, :clientState, :contractorName, :contractName)",
                    {
                        'clientName': clientName,
                        'clientPhoneNumber': clientPhoneNumber,
@@ -89,21 +95,12 @@ def contractHistoryInsert(clientName, clientPhoneNumber, clientAddress, clientCi
                        'clientCity': clientCity,
                        'clientZipcode': clientZipcode,
                        'clientState': clientState,
-                       'contractorName': contractorName
+                       'contractorName': contractorName,
+                       'contractName': contractName 
 
                }
           
             )
-
-    cursor.execute(""" SELECT * FROM ContraGOContractHistory """)
-
-    data = cursor.fetchall ()
-
-    # print the rows
-    for row in data :
-        print(row[1])
-        print(row[0])
-        conn.commit() 
-
+    
     conn.close()
 

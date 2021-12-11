@@ -1,20 +1,68 @@
 
-from tkinter import Button, Canvas, Entry, PhotoImage, Text, Tk, Toplevel
+from tkinter import Button, Canvas, Entry, PhotoImage, Text, Tk, Toplevel, messagebox
 
+from contra_goapp.CONTRAGO_DB.contra_go_log_in_db import registerUser, validationUser
 
+from contra_goapp.CONTRAGO_GUI.contra_go_mainpage_gui import contrago_mainpage
 
 def contrago_register():
     
+    """contrago_register()
+
+    Checks if user credentials are valid 
+    to close and open new window for mainpage
+
+    Args:
+      N/A
+
+
+    """
     window1 = Toplevel(window)
     
     window1.title("Contra - GO Register")
     
 
 
+def valUserClose(username, password): 
+    
+    """valUserClose(username, password)
+
+    Checks if user credentials are valid 
+    to close and open new window for mainpage
+
+    Args:
+      username: A string value for username
+      password: A string value for password
+
+
+    """
+    if validationUser(username, password) == 1: 
+        
+        window.destroy()
+        contrago_mainpage()
+       
+        
+    else: 
+        
+        messagebox.showinfo("ContraGo Log In","Incorrect Information")
+
 
 def contrago_log_in(): 
     
+    """contrago_log_in()
+
+    Executes the log in gui module for 
+    user log in and register module 
+
+    Args:
+      N/A
+
+
+    """
     global window
+    global username 
+    global password
+    
     
     window = Tk()
     
@@ -22,6 +70,7 @@ def contrago_log_in():
     """ 
     Tkinter Window Dimensions 
     """ 
+    window.title("ContraGO - Log In/Register")
     window.geometry("1152x700")
     window.configure(bg="#AEC0FF")
     
@@ -148,7 +197,7 @@ def contrago_log_in():
         text="Register",
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: contrago_register(),
+        command=lambda: valUserClose(username.get(), password.get()),
         relief="flat",
     )
     
