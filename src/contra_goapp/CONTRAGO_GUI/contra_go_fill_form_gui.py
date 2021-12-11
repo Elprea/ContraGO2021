@@ -39,7 +39,15 @@ def ContraGO_Estimate_Module():
         Output:
           .docx editable file
         """
-        connect()
+       
+        
+        contractHistoryInsert(clientName.get(), 
+                              clientPhoneN.get(), 
+                              clientAdd.get(), 
+                              clientCity.get(), 
+                              clientZip.get(),
+                              clientState.get(), 
+                              "Daniel")
         
         final_estimate = str(int(matCost.get()) + int(demoCost.get()) + int(laborCost.get()))
 

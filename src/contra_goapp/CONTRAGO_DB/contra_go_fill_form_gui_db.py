@@ -26,15 +26,20 @@ def connect():
         Output:
           .docx editable file 
         """
-    conn = sqlite3.connect("ContraG0_Contract_History.db")
+    conn = sqlite3.connect("ContraGOContract_History.db")
 
     cursor = conn.cursor()
 
 
     cursor.execute("""
-                   CREATE TABlE IF NOT EXISTS ContraG0ContractHistory ( 
-                       username text, 
-                       password text
+                   CREATE TABlE IF NOT EXISTS ContraGOContractHistory ( 
+                       clientName text, 
+                       clientPhoneNumber text, 
+                       clientAddress text, 
+                       clientCity text, 
+                       clientZipcode text, 
+                       clientState text, 
+                       contractorName text
                        )""")
 
     conn.commit()
@@ -47,7 +52,7 @@ def connect():
  
 def contractHistoryInsert(clientName, clientPhoneNumber, clientAddress, clientCity, clientZipcode, clientState, contractorName): 
     
-    """contractHistoryInsert(clientName, clientPhoneNumber, 
+    """ContraGOContractHistory(clientName, clientPhoneNumber, 
                             clientAddress, clientCity, clientZipcode, 
                             clientState, contractorName)
     
@@ -60,31 +65,37 @@ def contractHistoryInsert(clientName, clientPhoneNumber, clientAddress, clientCi
 
     """
    
-    conn = sqlite3.connect('ContraG0_Contract_History.db')
+    conn = sqlite3.connect('ContraGO_Contract_History.db')
+    
     
     cursor = conn.cursor()
     
     cursor.execute("""
-                   CREATE TABlE IF NOT EXISTS ContraG0ContractHistory ( 
-                       username text, 
-                       password text
+                   CREATE TABlE IF NOT EXISTS ContraGOContractHistory ( 
+                       clientName text, 
+                       clientPhoneNumber text, 
+                       clientAddress text, 
+                       clientCity text, 
+                       clientZipcode text, 
+                       clientState text, 
+                       contractorName text
                        )""")
 
-    cursor.execute("INSERT INTO ContraG0ContractHistory VALUES (:clientName, :clientPhoneNumber, :clientAddress, :clientCity, :clientZipcode, :clientState, :contractorName)",
+    cursor.execute("INSERT INTO ContraGOContractHistory VALUES (:clientName, :clientPhoneNumber, :clientAddress, :clientCity, :clientZipcode, :clientState, :contractorName)",
                    {
-                       'clientName': clientName.get(),
-                       'clientPhoneNumber': clientPhoneNumber.get(),
-                       'clientAddress': clientName.get(),
-                       'clientCity': clientPhoneNumber.get(),
-                       'clientZipcode': clientName.get(),
-                       'clientState': clientPhoneNumber.get(),
-                       'contractorName': clientName.get()
+                       'clientName': clientName,
+                       'clientPhoneNumber': clientPhoneNumber,
+                       'clientAddress': clientAddress,
+                       'clientCity': clientCity,
+                       'clientZipcode': clientZipcode,
+                       'clientState': clientState,
+                       'contractorName': contractorName
 
                }
           
             )
 
-    cursor.execute(""" SELECT * FROM ContraG0ContractHistory """)
+    cursor.execute(""" SELECT * FROM ContraGOContractHistory """)
 
     data = cursor.fetchall ()
 
