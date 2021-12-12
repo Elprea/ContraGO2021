@@ -10,7 +10,12 @@ tied to the users account
 """
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 
+import sqlite3
+
 from contra_goapp.CONTRAGO_GUI.contra_go_fill_form_gui import ContraGO_Estimate_Module
+
+from contra_goapp.CONTRAGO_DB.contra_go_fill_form_gui_db import getContractHistory
+
 
 def openFillForm(): 
     
@@ -27,7 +32,7 @@ def openFillForm():
     window.destroy()
     ContraGO_Estimate_Module()
     
-    
+
 
 def contrago_mainpage(): 
     
@@ -41,8 +46,8 @@ def contrago_mainpage():
 
 
     """
-    
     global window 
+    
     
     window = Tk()
     
@@ -53,7 +58,6 @@ def contrago_mainpage():
     window.title("ContraGO Mainpage")
     window.geometry("1200x780")
     window.configure(bg = "#FFFFFF")
-    
     
     
     """ 
@@ -97,7 +101,7 @@ def contrago_mainpage():
         bg="#BD8000",
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_1 clicked"),
+        command=lambda: getContractHistory(),
         relief="flat"
     )
     

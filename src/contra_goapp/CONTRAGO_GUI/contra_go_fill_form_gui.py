@@ -12,11 +12,13 @@ from __future__ import print_function
 
 import os
 
+
 from tkinter import Button, Canvas, Entry, Text, Tk, END
 
 from mailmerge import MailMerge
 
-from contra_goapp.CONTRAGO_DB.contra_go_fill_form_gui_db import connect, contractHistoryInsert
+from contra_goapp.CONTRAGO_DB.contra_go_fill_form_gui_db import contractHistoryInsert
+
 
 template = os.path.join(
     os.path.dirname(__file__), "assets", "ContraGO_ContractEstimate.docx"
@@ -29,6 +31,7 @@ document = MailMerge(template)
 def ContraGO_Estimate_Module():
     
     
+    
     def submitForm():
 
         """submitForm()
@@ -39,9 +42,7 @@ def ContraGO_Estimate_Module():
         Output:
           .docx editable file
         """
-       
-    
-        
+
         final_estimate = str(int(matCost.get()) + int(demoCost.get()) + int(laborCost.get()))
 
         document.merge(
@@ -67,14 +68,15 @@ def ContraGO_Estimate_Module():
         
         document.write(str(clientAdd.get() + clientName.get()) + "ESTIMATE.docx")
         
+        
         contractHistoryInsert(clientName.get(), 
-                              clientPhoneN.get(), 
-                              clientAdd.get(), 
-                              clientCity.get(), 
-                              clientZip.get(),
-                              clientState.get(), 
-                              "Daniel", 
-                              str(clientAdd.get() + clientName.get()) + "ESTIMATE.docx")
+                             clientPhoneN.get(), 
+                             clientAdd.get(), 
+                             clientCity.get(), 
+                             clientZip.get(),
+                             clientState.get(), 
+                             "Bob", 
+                             str(clientAdd.get() + clientName.get()) + "ESTIMATE.docx")
         
         
         
@@ -103,10 +105,8 @@ def ContraGO_Estimate_Module():
         jobType.delete(0, END)
     
         
-        
 
-
-    
+    global window
     window = Tk()
     
 
@@ -118,6 +118,7 @@ def ContraGO_Estimate_Module():
     window.configure(bg = "#FFFFFF")
     
     
+
     """ 
     Tkinter Canvas Create
     """ 
@@ -530,7 +531,7 @@ def ContraGO_Estimate_Module():
         text="Back",
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_3 clicked"),
+        command=lambda: print('hello'),
         relief="flat"
     )
     backBttn.place(

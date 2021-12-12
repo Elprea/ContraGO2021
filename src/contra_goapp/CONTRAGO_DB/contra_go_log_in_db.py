@@ -1,3 +1,14 @@
+""" ContraGO Log In Database Program
+
+This program will perform user validation for entered credentials, includes 
+username and password. This program performs registration of the user to 
+register to an account. 
+
+  Typical usage example:
+
+
+"""
+
 import sqlite3
 
 __author__ = "DanO"

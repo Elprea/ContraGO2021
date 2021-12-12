@@ -1,4 +1,12 @@
+""" ContraGO Log In GUI Program
 
+This program will run tkinter GUI program that will allow the user to log in 
+into their existing account and also register to a new account
+
+  Typical usage example:
+
+
+"""
 from tkinter import Button, Canvas, Entry, PhotoImage, Text, Tk, Toplevel, messagebox
 
 from contra_goapp.CONTRAGO_DB.contra_go_log_in_db import registerUser, validationUser
@@ -21,7 +29,21 @@ def contrago_register():
     
     window1.title("Contra - GO Register")
     
+def getCurrentUser(): 
+    """getUsername()
 
+    Returns username
+
+    Args:
+      N/A
+
+
+    """
+    global username 
+    username = username.get()
+    return username
+       
+        
 
 def valUserClose(username, password): 
     
@@ -40,7 +62,6 @@ def valUserClose(username, password):
         
         window.destroy()
         contrago_mainpage()
-       
         
     else: 
         

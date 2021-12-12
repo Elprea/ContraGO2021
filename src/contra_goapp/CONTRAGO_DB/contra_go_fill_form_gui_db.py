@@ -9,6 +9,8 @@ that allows user to create and view contracts tied to their account.
 """
 
 import sqlite3
+from tkinter import ttk, CENTER 
+import tkinter as tk
 
 __author__ = "DanO"
 __copyright__ = "DanO"
@@ -39,7 +41,8 @@ def connect():
                        clientCity text, 
                        clientZipcode text, 
                        clientState text, 
-                       contractorName text
+                       contractorName text, 
+                       contractName text
                        )""")
 
     conn.commit()
@@ -70,7 +73,7 @@ def contractHistoryInsert(clientName, clientPhoneNumber, clientAddress, clientCi
 
     """
    
-    conn = sqlite3.connect('ContraGO_Contract_History.db')
+    conn = sqlite3.connect('ContraGOContract_History.db')
     
     
     cursor = conn.cursor()
@@ -102,5 +105,84 @@ def contractHistoryInsert(clientName, clientPhoneNumber, clientAddress, clientCi
           
             )
     
+    
+    conn.commit()
     conn.close()
+    
+def getContractHistory():
+    """getContractHistory()
+    
+    Retrieves all users tuple tied with their username and displays
+    tuple in Treeview module 
 
+    Args:
+      N/A
+
+
+    """
+    # Creates root tkinter object
+    root = tk.Tk() 
+    
+    root.title("ContraGO - Contract History")   
+    
+    tree = ttk.Treeview(root, column=("c1", "c2", "c3","c4", "c5", "c6","c7","c8", "c9"), show='headings')
+    
+    conn = sqlite3.connect("ContraGOContract_History.db")
+
+    cursor = conn.cursor()
+    
+    connect()
+
+    cursor.execute("SELECT * FROM ContraGOContractHistory WHERE contractorName=" + "\"Bob\"")
+
+    rows = cursor.fetchall()  
+
+    for row in rows:
+        tree.insert("", tk.END, values=row)        
+    
+    conn.commit() 
+    
+    conn.close()
+    
+    # Create Treeview fields and columns (Table Dimensions)
+    tree.column("#1", anchor=tk.CENTER)
+
+    tree.heading("#1", text="Client Name")
+
+    tree.column("#2", anchor=tk.CENTER)
+
+    tree.heading("#2", text="Client Phone Number")
+
+    tree.column("#3", anchor=tk.CENTER)
+
+    tree.heading("#3", text="Client Address")
+
+    tree.column("#4", anchor=tk.CENTER)
+
+    tree.heading("#4", text="Client City")
+
+    tree.column("#5", anchor=tk.CENTER)
+
+    tree.heading("#5", text="Client Zipcode")
+
+    tree.column("#6", anchor=tk.CENTER)
+
+    tree.heading("#6", text="Client State")
+
+    tree.column("#7", anchor=tk.CENTER)
+
+    tree.heading("#7", text="Contractor Name")
+    
+    tree.column("#8", anchor=tk.CENTER)
+
+    tree.heading("#8", text="Contract File Name")
+    
+    tree.column("#9", anchor=tk.CENTER)
+
+    tree.heading("#9", text="ID")
+
+
+
+    tree.pack()
+    
+    
