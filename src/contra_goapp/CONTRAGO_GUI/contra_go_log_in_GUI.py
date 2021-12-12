@@ -16,7 +16,7 @@ from contra_goapp.CONTRAGO_GUI.contra_go_mainpage_gui import contrago_mainpage
 def contrago_register():
     
     """contrago_register()
-
+dani
     Checks if user credentials are valid 
     to close and open new window for mainpage
 
@@ -28,21 +28,7 @@ def contrago_register():
     window1 = Toplevel(window)
     
     window1.title("Contra - GO Register")
-    
-def getCurrentUser(): 
-    """getUsername()
-
-    Returns username
-
-    Args:
-      N/A
-
-
-    """
-    global username 
-    username = username.get()
-    return username
-       
+           
         
 
 def valUserClose(username, password): 
@@ -59,6 +45,11 @@ def valUserClose(username, password):
 
     """
     if validationUser(username, password) == 1: 
+        
+        file=open("user.txt", "w") 
+        file.write(str(username)+"\n")
+        file.write(str(password))
+        file.close() 
         
         window.destroy()
         contrago_mainpage()
@@ -200,7 +191,7 @@ def contrago_log_in():
         text="Submit",
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print('daw'),
+        command=lambda: valUserClose(username.get(), password.get()),
         relief="flat",
     )
     
@@ -218,7 +209,7 @@ def contrago_log_in():
         text="Register",
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: valUserClose(username.get(), password.get()),
+        command=lambda: registerUser(username.get(), password.get()), 
         relief="flat",
     )
     

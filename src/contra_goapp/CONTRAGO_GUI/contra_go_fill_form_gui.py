@@ -19,14 +19,20 @@ from mailmerge import MailMerge
 
 from contra_goapp.CONTRAGO_DB.contra_go_fill_form_gui_db import contractHistoryInsert
 
-
-template = os.path.join(
+#Estimate Template
+estimate_template = os.path.join(
     os.path.dirname(__file__), "assets", "ContraGO_ContractEstimate.docx"
 )
 
+# Final Contract Template
+finalContract_template = os.path.join(
+    os.path.dirname(__file__), "assets", "ContraGO_FinalContract.docx"
+)
 
-document = MailMerge(template)
 
+estimate_document = MailMerge(estimate_template)
+
+final_document = MailMerge(finalContract_template)
 
 def ContraGO_Estimate_Module():
     
@@ -44,8 +50,10 @@ def ContraGO_Estimate_Module():
         """
 
         final_estimate = str(int(matCost.get()) + int(demoCost.get()) + int(laborCost.get()))
-
-        document.merge(
+        
+        file1 = open("user.txt", "r")
+        # Estimate Contract Mailmerge Input
+        estimate_document.merge(
             # Contractor Information
             ContractorName="Daniel Ordonez",
             ContractorPhoneNumber="(408)-630-5230",
@@ -63,10 +71,31 @@ def ContraGO_Estimate_Module():
             MaterialCost=matCost.get(),
             DemolitionCost=demoCost.get(),
             LaborCost=laborCost.get(),
+            JobType=jobType.get(),
             EstimateTotal=str(final_estimate),
         )
         
-        document.write(str(clientAdd.get() + clientName.get()) + "ESTIMATE.docx")
+        full_address = str(clientAdd.get() + ", " + clientCity.get() + ", " + clientState.get() + ", " + clientZip.get())
+        
+        estimate_document.write(str(full_address + "_" + clientName.get()) + "_EstimateContract.docx")
+        
+        # Final Contract Mailmerge Input
+        final_document.merge(
+            # Contractor Information
+            ContractorName="Daniel Ordonez",
+            ContractorAddress="1330 N Nascom Ave",
+            ContractorWarranty=warranty.get(),
+            # Client Information
+            EmployerAddress=full_address,
+            EmployerName=clientName.get(),
+            # Job Information
+            StartDate=startDate.get(),
+            JobDescription=jobDes.get("1.0", END),
+            PaymentTypes=paymentType.get(),
+            TotalJobPrice=str(final_estimate)
+        )
+        
+        final_document.write(str(full_address + "_" + clientName.get()) + "_FinalContract.docx")
         
         
         contractHistoryInsert(clientName.get(), 
@@ -75,11 +104,10 @@ def ContraGO_Estimate_Module():
                              clientCity.get(), 
                              clientZip.get(),
                              clientState.get(), 
-                             "Bob", 
-                             str(clientAdd.get() + clientName.get()) + "ESTIMATE.docx")
-        
-        
-        
+                             str(file1.readline()), 
+                             str(full_address + clientName.get() + "_EstimateContract.docx"),
+                             str(full_address + clientName.get() + "_FinalContract.docx"))
+        file1.close()
 
     
     def clearFields(): 
@@ -259,6 +287,28 @@ def ContraGO_Estimate_Module():
         font=("Coda Regular", 16 * -1)
     )
     
+    #Payment Type Entry & Label
+    paymentType = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        highlightthickness=0
+    )
+    paymentType.place(
+        x=927.0,
+        y=605.0,
+        width=144.0,
+        height=28.0
+    )
+    
+    canvas.create_text(
+        820.0,
+        610.0,
+        anchor="nw",
+        text="Payment Type:",
+        fill="#000000",
+        font=("Coda Regular", 16 * -1)
+    )
+    
     
     
     #matCost Entry & Label
@@ -283,6 +333,27 @@ def ContraGO_Estimate_Module():
         font=("Coda Regular", 16 * -1)
     )
     
+    #Warranty Entry & Label
+    warranty = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        highlightthickness=0
+    )
+    warranty.place(
+        x=500.0,
+        y=559.0,
+        width=50.0,
+        height=28.0
+    )
+    
+    canvas.create_text(
+        490.0,
+        536.0,
+        anchor="nw",
+        text="Warranty:",
+        fill="#000000",
+        font=("Coda Regular", 16 * -1)
+    )
     
     
     #jobDes Entry & Label

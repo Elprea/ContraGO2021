@@ -26,13 +26,13 @@ def connect():
     Output:
       .docx editable file
     """
-    conn = sqlite3.connect("ContraG0User.db")
+    conn = sqlite3.connect("ContraGOUser.db")
 
     cursor = conn.cursor()
 
     cursor.execute(
         """
-                   CREATE TABlE IF NOT EXISTS ContraG0_UInformation (
+                   CREATE TABlE IF NOT EXISTS ContraGO_UInformation (
                        username text,
                        password text
                        )"""
@@ -56,24 +56,24 @@ def registerUser(username, password):
 
     """
 
-    conn = sqlite3.connect("ContraG0User.db")
+    conn = sqlite3.connect("ContraGOUser.db")
 
     cursor = conn.cursor()
     
     cursor.execute(
         """
-                   CREATE TABlE IF NOT EXISTS ContraG0_UInformation (
+                   CREATE TABlE IF NOT EXISTS ContraGO_UInformation (
                        username text,
                        password text
                        )"""
     )
 
     cursor.execute(
-        "INSERT INTO ContraG0_UInformation VALUES (:username, :password)",
+        "INSERT INTO ContraGO_UInformation VALUES (:username, :password)",
         {"username": username, "password": password},
     )
 
-    cursor.execute(""" SELECT * FROM ContraG0_UInformation """)
+    cursor.execute(""" SELECT * FROM ContraGO_UInformation """)
 
     data = cursor.fetchall()
 
@@ -99,23 +99,24 @@ def validationUser(username, password):
 
     """
 
-    conn = sqlite3.connect("ContraG0User.db")
+    conn = sqlite3.connect("ContraGOUser.db")
 
     cursor = conn.cursor()
     
     cursor.execute(
         """
-                   CREATE TABlE IF NOT EXISTS ContraG0_UInformation (
+                   CREATE TABlE IF NOT EXISTS ContraGO_UInformation (
                        username text,
                        password text
                        )"""
     )
 
     cursor.execute(
-        "SELECT username from ContraG0_UInformation WHERE username= :username AND Password = :password",
+        "SELECT username from ContraGO_UInformation WHERE username= :username AND Password = :password",
         {"username": username, "password": password},
     )
-
+    
+    
     if not cursor.fetchone():
         # Incorrect credentials 
         return 0
@@ -124,3 +125,4 @@ def validationUser(username, password):
     else:
         # Correct credentials 
         return 1
+    cursor.commit()

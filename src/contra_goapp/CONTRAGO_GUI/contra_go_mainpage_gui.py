@@ -16,6 +16,15 @@ from contra_goapp.CONTRAGO_GUI.contra_go_fill_form_gui import ContraGO_Estimate_
 
 from contra_goapp.CONTRAGO_DB.contra_go_fill_form_gui_db import getContractHistory
 
+def userLogOut(): 
+    
+    file = open("user.txt","r+")
+    
+    file.truncate(0)
+    
+    file.close()
+    
+    window.destroy()
 
 def openFillForm(): 
     
@@ -136,7 +145,7 @@ def contrago_mainpage():
         bg="#BD8000",
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_3 clicked"),
+        command=lambda: userLogOut(),
         relief="flat"
     )
     logOutBttn.place(

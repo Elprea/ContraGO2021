@@ -9,8 +9,11 @@ that allows user to create and view contracts tied to their account.
 """
 
 import sqlite3
+
 from tkinter import ttk, CENTER 
+
 import tkinter as tk
+
 
 __author__ = "DanO"
 __copyright__ = "DanO"
@@ -42,7 +45,8 @@ def connect():
                        clientZipcode text, 
                        clientState text, 
                        contractorName text, 
-                       contractName text
+                       estimateName text,
+                       finalContractName text
                        )""")
 
     conn.commit()
@@ -53,11 +57,11 @@ def connect():
 
 
  
-def contractHistoryInsert(clientName, clientPhoneNumber, clientAddress, clientCity, clientZipcode, clientState, contractorName, contractName): 
+def contractHistoryInsert(clientName, clientPhoneNumber, clientAddress, clientCity, clientZipcode, clientState, contractorName, estimateName, finalContractName): 
     
     """ContraGOContractHistory(clientName, clientPhoneNumber, 
                             clientAddress, clientCity, clientZipcode, 
-                            clientState, contractorName, contractName)
+                            clientState, contractorName, estimateName, finalContractName)
     
     Inserts new tuple to database for a new contract and client information 
 
@@ -68,16 +72,17 @@ def contractHistoryInsert(clientName, clientPhoneNumber, clientAddress, clientCi
       clientZipcode: A string value
       clientState: A string value 
       contractorName: A string value
-      contractName: A string value
+      estimateName: A string value
+      finalContractName: A string value
 
 
     """
-   
+    
     conn = sqlite3.connect('ContraGOContract_History.db')
     
     
     cursor = conn.cursor()
-    
+
     cursor.execute("""
                    CREATE TABlE IF NOT EXISTS ContraGOContractHistory ( 
                        clientName text, 
@@ -87,10 +92,11 @@ def contractHistoryInsert(clientName, clientPhoneNumber, clientAddress, clientCi
                        clientZipcode text, 
                        clientState text, 
                        contractorName text,
-                       contractName text
+                       estimateName text,
+                       finalContractName text
                        )""")
 
-    cursor.execute("INSERT INTO ContraGOContractHistory VALUES (:clientName, :clientPhoneNumber, :clientAddress, :clientCity, :clientZipcode, :clientState, :contractorName, :contractName)",
+    cursor.execute("INSERT INTO ContraGOContractHistory VALUES (:clientName, :clientPhoneNumber, :clientAddress, :clientCity, :clientZipcode, :clientState, :contractorName, :estimateName, :finalContractName)",
                    {
                        'clientName': clientName,
                        'clientPhoneNumber': clientPhoneNumber,
@@ -99,7 +105,8 @@ def contractHistoryInsert(clientName, clientPhoneNumber, clientAddress, clientCi
                        'clientZipcode': clientZipcode,
                        'clientState': clientState,
                        'contractorName': contractorName,
-                       'contractName': contractName 
+                       'estimateName': estimateName,
+                       'finalContractName': finalContractName
 
                }
           
@@ -108,6 +115,8 @@ def contractHistoryInsert(clientName, clientPhoneNumber, clientAddress, clientCi
     
     conn.commit()
     conn.close()
+    
+    
     
 def getContractHistory():
     """getContractHistory()
@@ -125,16 +134,18 @@ def getContractHistory():
     
     root.title("ContraGO - Contract History")   
     
-    tree = ttk.Treeview(root, column=("c1", "c2", "c3","c4", "c5", "c6","c7","c8", "c9"), show='headings')
+    tree = ttk.Treeview(root, column=("c1", "c2", "c3","c4", "c5", "c6","c7","c8", "c9", "c10"), show='headings')
     
     conn = sqlite3.connect("ContraGOContract_History.db")
 
     cursor = conn.cursor()
     
     connect()
-
-    cursor.execute("SELECT * FROM ContraGOContractHistory WHERE contractorName=" + "\"Bob\"")
-
+    
+    file1 = open("user.txt", "r")
+    
+    cursor.execute("SELECT * FROM ContraGOContractHistory WHERE contractorName=" + "\"" + str(file1.readline()) + "\"")
+    file1.close()
     rows = cursor.fetchall()  
 
     for row in rows:
@@ -175,11 +186,11 @@ def getContractHistory():
     
     tree.column("#8", anchor=tk.CENTER)
 
-    tree.heading("#8", text="Contract File Name")
+    tree.heading("#8", text="Estimate File Name")
     
     tree.column("#9", anchor=tk.CENTER)
 
-    tree.heading("#9", text="ID")
+    tree.heading("#9", text="Final Contract File Name")
 
 
 
