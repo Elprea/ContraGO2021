@@ -34,7 +34,15 @@ def connect():
         """
                    CREATE TABlE IF NOT EXISTS ContraGO_UInformation (
                        username text,
-                       password text
+                       password text,
+                       userFirstName text, 
+                       userLastName text,
+                       userAddress text,
+                       userCity text,
+                       userState text, 
+                       userZipcode text, 
+                       userPhoneNumber text, 
+                       userEmailAddress text  
                        )"""
     )
 
@@ -42,48 +50,6 @@ def connect():
 
     conn.close()
 
-
-def registerUser(username, password):
-
-    """registerUser(username, password)
-
-    Inserts new tuple to database for new registered user
-
-    Args:
-      username: A string value for username
-      password: A string value for password
-
-
-    """
-
-    conn = sqlite3.connect("ContraGOUser.db")
-
-    cursor = conn.cursor()
-    
-    cursor.execute(
-        """
-                   CREATE TABlE IF NOT EXISTS ContraGO_UInformation (
-                       username text,
-                       password text
-                       )"""
-    )
-
-    cursor.execute(
-        "INSERT INTO ContraGO_UInformation VALUES (:username, :password)",
-        {"username": username, "password": password},
-    )
-
-    cursor.execute(""" SELECT * FROM ContraGO_UInformation """)
-
-    data = cursor.fetchall()
-
-    # print the rows
-    for row in data:
-        print(row[1])
-        print(row[0])
-        conn.commit()
-
-    conn.close()
 
 
 def validationUser(username, password):
@@ -107,22 +73,35 @@ def validationUser(username, password):
         """
                    CREATE TABlE IF NOT EXISTS ContraGO_UInformation (
                        username text,
-                       password text
+                       password text,
+                       userFirstName text, 
+                       userLastName text,
+                       userAddress text,
+                       userCity text,
+                       userState text, 
+                       userZipcode text, 
+                       userPhoneNumber text, 
+                       userEmailAddress text
                        )"""
     )
 
     cursor.execute(
-        "SELECT username from ContraGO_UInformation WHERE username= :username AND Password = :password",
-        {"username": username, "password": password},
+        "SELECT * from ContraGO_UInformation WHERE username= :username AND password = :password",{
+            "username": username, 
+            "password": password
+        },
     )
     
-    
-    if not cursor.fetchone():
+    if cursor.fetchone():
         # Incorrect credentials 
+        print(username)
+        print(password)
         return 0
         
 
     else:
         # Correct credentials 
         return 1
-    cursor.commit()
+    
+    conn.commit()
+    conn.close()

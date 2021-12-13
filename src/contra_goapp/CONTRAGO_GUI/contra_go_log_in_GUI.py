@@ -9,14 +9,15 @@ into their existing account and also register to a new account
 """
 from tkinter import Button, Canvas, Entry, PhotoImage, Text, Tk, Toplevel, messagebox
 
-from contra_goapp.CONTRAGO_DB.contra_go_log_in_db import registerUser, validationUser
+from contra_goapp.CONTRAGO_DB.contra_go_log_in_db import validationUser
 
 from contra_goapp.CONTRAGO_GUI.contra_go_mainpage_gui import contrago_mainpage
 
-def contrago_register():
+from contra_goapp.CONTRAGO_GUI.contra_go_register_gui import contrago_register
+
+def contraReg():
     
     """contrago_register()
-dani
     Checks if user credentials are valid 
     to close and open new window for mainpage
 
@@ -25,9 +26,9 @@ dani
 
 
     """
-    window1 = Toplevel(window)
+    window.destroy()
+    contrago_register()
     
-    window1.title("Contra - GO Register")
            
         
 
@@ -44,7 +45,7 @@ def valUserClose(username, password):
 
 
     """
-    if validationUser(username, password) == 1: 
+    if validationUser(username, password) == 0: 
         
         file=open("user.txt", "w") 
         file.write(str(username)+"\n")
@@ -209,7 +210,7 @@ def contrago_log_in():
         text="Register",
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: registerUser(username.get(), password.get()), 
+        command=lambda: contraReg(), 
         relief="flat",
     )
     
