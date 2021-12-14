@@ -93,14 +93,12 @@ def validationUser(username, password):
     )
     
     if cursor.fetchone():
-        # Incorrect credentials 
-        print(username)
-        print(password)
+        # Correct credentials 
         return 0
         
 
     else:
-        # Correct credentials 
+        # Incorrect credentials 
         return 1
     
     conn.commit()

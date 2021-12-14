@@ -145,6 +145,7 @@ def contrago_log_in():
     
     
     password = Entry(
+        show="*",
         bd=0,
         bg="#6A79FD",
         highlightthickness=0
@@ -192,7 +193,7 @@ def contrago_log_in():
         text="Submit",
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: valUserClose(username.get(), password.get()),
+        command=lambda: valUserClose(username.get().strip(), password.get().strip()),
         relief="flat",
     )
     

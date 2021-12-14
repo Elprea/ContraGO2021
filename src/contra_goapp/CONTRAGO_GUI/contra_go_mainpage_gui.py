@@ -1,7 +1,7 @@
 """ ContraGO Main Page GUI Program
 
 This program will run tkinter GUI program that will allow the user to navigate
-throught the application to either create a new contract or view previous contracts 
+through the application to either create a new contract or view previous contracts 
 tied to the users account
 
   Typical usage example:

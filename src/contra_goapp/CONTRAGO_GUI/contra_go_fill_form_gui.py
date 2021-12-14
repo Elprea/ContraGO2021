@@ -408,6 +408,7 @@ def ContraGO_Estimate_Module():
 
     #clientPhoneN Entry & Label
     clientPhoneN = Entry(
+        width =11,
         bd=0,
         bg="#FFFFFF",
         highlightthickness=0

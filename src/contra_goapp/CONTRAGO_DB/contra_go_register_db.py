@@ -83,6 +83,7 @@ def registerUser(username, password, userFirstName, userLastName, userAddress, u
     else:
         
         return 1
+    
     conn.commit() 
     conn.close()
     
