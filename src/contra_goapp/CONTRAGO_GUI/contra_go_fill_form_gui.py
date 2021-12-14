@@ -12,6 +12,7 @@ from __future__ import print_function
 
 import os
 
+import sqlite3
 
 from tkinter import Button, Canvas, Entry, Text, Tk, END
 
@@ -32,7 +33,45 @@ finalContract_template = os.path.join(
 
 estimate_document = MailMerge(estimate_template)
 
+print(estimate_document.get_merge_fields())
+
 final_document = MailMerge(finalContract_template)
+
+file1 = open("user.txt", "r")
+conName = file1.readline().strip()
+file1.close()
+
+
+def getContractorName(username): 
+    
+    conn = sqlite3.connect("ContraGOUser.db")
+
+    cursor = conn.cursor()
+    
+    cursor.execute(
+        "SELECT userFirstName from ContraGO_UInformation WHERE username= :username",{
+            "username": username
+        },
+    )
+    
+    result = cursor.fetchone()
+    first_name = str(result[0])
+    
+    cursor.execute(
+        "SELECT userLastName from ContraGO_UInformation WHERE username= :username",{
+            "username": username
+        },
+    )
+    
+    result = cursor.fetchone()
+    last_name = str(result[0])
+    
+    conn.commit() 
+    print(first_name) 
+    print(last_name)
+    
+    return first_name + " " + last_name
+
 
 def ContraGO_Estimate_Module():
     
@@ -49,13 +88,13 @@ def ContraGO_Estimate_Module():
           .docx editable file
         """
 
-        final_estimate = str(int(matCost.get()) + int(demoCost.get()) + int(laborCost.get()))
+        final_estimate = int(matCost.get()) + int(demoCost.get()) + int(laborCost.get())
         
         file1 = open("user.txt", "r")
         # Estimate Contract Mailmerge Input
         estimate_document.merge(
             # Contractor Information
-            ContractorName="Daniel Ordonez",
+            ContractorName="Daniel",
             ContractorPhoneNumber="(408)-630-5230",
             ContractorAddress="1330 N Nascom Ave",
             CurrentDate="11/28/21",
@@ -603,7 +642,7 @@ def ContraGO_Estimate_Module():
         text="Back",
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print('hello'),
+        command=lambda: print("Hello"),
         relief="flat"
     )
     backBttn.place(

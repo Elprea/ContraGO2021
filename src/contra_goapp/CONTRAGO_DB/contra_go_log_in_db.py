@@ -29,6 +29,7 @@ def connect():
     conn = sqlite3.connect("ContraGOUser.db")
 
     cursor = conn.cursor()
+    
 
     cursor.execute(
         """

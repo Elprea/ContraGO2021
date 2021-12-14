@@ -9,13 +9,12 @@ tied to the users account
 
 """
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
-
 import sqlite3
 
 from contra_goapp.CONTRAGO_GUI.contra_go_fill_form_gui import ContraGO_Estimate_Module
 
-from contra_goapp.CONTRAGO_DB.contra_go_fill_form_gui_db import getContractHistory
-
+from contra_goapp.CONTRAGO_DB.contra_go_fill_form_gui_db import getContractHistory, connect
+    
 def userLogOut(): 
     
     file = open("user.txt","r+")
@@ -25,6 +24,8 @@ def userLogOut():
     file.close()
     
     window.destroy()
+    
+    
 
 def openFillForm(): 
     
@@ -158,7 +159,7 @@ def contrago_mainpage():
     
     aboutBttn = Button(
         text="About",
-        font=('ArialNarrow 20 bold'),
+        font=('ArialNarrow 15 bold'),
         bg="#BD8000",
         borderwidth=0,
         highlightthickness=0,
@@ -168,6 +169,22 @@ def contrago_mainpage():
     aboutBttn.place(
         x=85.0,
         y=496.0,
+        width=200.0,
+        height=53.0
+    )
+    
+    userSettingBttn = Button(
+        text="User Settings",
+        font=('ArialNarrow 15 bold'),
+        bg="#BD8000",
+        borderwidth=0,
+        highlightthickness=0,
+        command=lambda: print("User Settings"),
+        relief="flat"
+    )
+    userSettingBttn.place(
+        x=85.0,
+        y=580.0,
         width=200.0,
         height=53.0
     )

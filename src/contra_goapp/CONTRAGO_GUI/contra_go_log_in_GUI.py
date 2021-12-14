@@ -29,6 +29,8 @@ def contraReg():
     window.destroy()
     contrago_register()
     
+    
+    
            
         
 

@@ -7,10 +7,10 @@ from contra_goapp.CONTRAGO_DB.contra_go_register_db import registerUser
 
 def validateRegister(username, password, userFirstName, userLastName, userAddress, userCity, userState,  userZipcode, userPhoneNumber, userEmailAddress):
     
-   if registerUser(username.strip(), password.strip(), userFirstName, userLastName, userAddress, userCity, userState,  userZipcode, userPhoneNumber, userEmailAddress) == 1:
+   if registerUser(username.strip(), password.strip(), userFirstName.strip(), userLastName.strip(), userAddress.strip(), userCity.strip(), userState.strip(),  userZipcode.strip(), userPhoneNumber.strip(), userEmailAddress.strip()) == 1:
        messagebox.showinfo("ContraGo - Register","Username already exist. Please enter a new username")
    else: 
-       registerUser(username.strip(), password.strip(), userFirstName, userLastName, userAddress, userCity, userState,  userZipcode, userPhoneNumber, userEmailAddress)
+       registerUser(username.strip(), password.strip(), userFirstName.strip(), userLastName.strip(), userAddress.strip(), userCity.strip(), userState.strip(),  userZipcode.strip(), userPhoneNumber.strip(), userEmailAddress.strip())
        messagebox.showinfo("ContraGo - Register","Successfully Made Account. Please Log In")
     
 def contrago_register():
