@@ -4,7 +4,6 @@ This program will perform user validation for entered credentials, includes
 username and password. This program performs registration of the user to 
 register to an account. 
 
-  Typical usage example:
 
 
 """

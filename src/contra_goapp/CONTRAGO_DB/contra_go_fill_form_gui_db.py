@@ -3,8 +3,6 @@
 This program will provide the database for the fill form GUI program 
 that allows user to create and view contracts tied to their account. 
 
-  Typical usage example:
-
   
 """
 
@@ -145,7 +143,9 @@ def getContractHistory():
     file1 = open("user.txt", "r")
     
     cursor.execute("SELECT * FROM ContraGOContractHistory WHERE contractorName=" + "\"" + str(file1.readline()) + "\"")
+    
     file1.close()
+    
     rows = cursor.fetchall()  
 
     for row in rows:
@@ -191,8 +191,6 @@ def getContractHistory():
     tree.column("#9", anchor=tk.CENTER)
 
     tree.heading("#9", text="Final Contract File Name")
-
-
 
     tree.pack()
     

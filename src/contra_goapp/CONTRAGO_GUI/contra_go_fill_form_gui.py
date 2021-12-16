@@ -4,7 +4,6 @@ This program will run tkinter GUI program that will allow the user to
 fill out entry fields of the GUI and click on submit button to create a
 new .docx file that will outputed for the contractor to use
 
-  Typical usage example:
 
 
 """
@@ -14,16 +13,27 @@ import os
 
 import sqlite3
 
-from tkinter import Button, Canvas, Entry, Text, Tk, END
+from tkinter import Button, Canvas, Entry, Text, Tk, END, messagebox
+
+from datetime import date 
 
 from mailmerge import MailMerge
 
 from contra_goapp.CONTRAGO_DB.contra_go_fill_form_gui_db import contractHistoryInsert
 
+import contra_goapp.CONTRAGO_GUI.contra_go_mainpage_gui 
+
+
+# Favicon On Tkinter Window 
+contrago_favicon = os.path.join(
+    os.path.dirname(__file__), "assets", "contrago.ico"
+)
+
 #Estimate Template
 estimate_template = os.path.join(
     os.path.dirname(__file__), "assets", "ContraGO_ContractEstimate.docx"
 )
+
 
 # Final Contract Template
 finalContract_template = os.path.join(
@@ -33,49 +43,144 @@ finalContract_template = os.path.join(
 
 estimate_document = MailMerge(estimate_template)
 
-print(estimate_document.get_merge_fields())
-
 final_document = MailMerge(finalContract_template)
 
-file1 = open("user.txt", "r")
-conName = file1.readline().strip()
-file1.close()
 
 
-def getContractorName(username): 
+def getContractorName(): 
+    """getContractorName()
+
+        Args:
+          N/A
+
+        Output:
+          .docx editable file
+        """
+    global conName
+    
+    file1 = open("user.txt", "r")
+
+    conName = file1.readline().strip()
+    
+    file1.close()
     
     conn = sqlite3.connect("ContraGOUser.db")
 
     cursor = conn.cursor()
     
-    cursor.execute(
-        "SELECT userFirstName from ContraGO_UInformation WHERE username= :username",{
-            "username": username
-        },
-    )
+    cursor.execute("SELECT userFirstName from ContraGO_UInformation WHERE username=" + "\"" + conName + "\"")
     
     result = cursor.fetchone()
     first_name = str(result[0])
     
-    cursor.execute(
-        "SELECT userLastName from ContraGO_UInformation WHERE username= :username",{
-            "username": username
-        },
-    )
-    
+    cursor.execute("SELECT userLastName from ContraGO_UInformation WHERE username=" + "\"" + conName + "\"")
+   
     result = cursor.fetchone()
     last_name = str(result[0])
     
     conn.commit() 
-    print(first_name) 
-    print(last_name)
     
-    return first_name + " " + last_name
+    full_name = str(first_name) + " " + str(last_name)
+    
+    return full_name
+
+
+def getContractorPhoneNumber(): 
+    """getContractorPhoneNumber()
+
+        Args:
+          N/A
+
+        Output:
+          .docx editable file
+        """
+    file1 = open("user.txt", "r")
+
+    conName = file1.readline().strip()
+    
+    file1.close()
+    
+    conn = sqlite3.connect("ContraGOUser.db")
+
+    cursor = conn.cursor()
+    
+    cursor.execute("SELECT userPhoneNumber from ContraGO_UInformation WHERE username=" + "\"" + conName + "\"")
+    
+    result = cursor.fetchone()
+    
+    phoneNumber = str(result[0])
+    
+    contractorPhoneNumber = str(phoneNumber) 
+    
+    return contractorPhoneNumber
+
+
+def getContractorAddress(): 
+    """getContractorAddress()
+
+         Args:
+             N/A
+
+        Returns:
+            A new string of user complete address
+
+        Raises:
+            N/A
+        """
+    file1 = open("user.txt", "r")
+
+    conName = file1.readline().strip()
+    
+    file1.close()
+    
+    conn = sqlite3.connect("ContraGOUser.db")
+
+    cursor = conn.cursor()
+    
+    cursor.execute("SELECT userAddress from ContraGO_UInformation WHERE username=" + "\"" + conName + "\"")
+    
+    result = cursor.fetchone()
+    
+    address = str(result[0])
+    
+    cursor.execute("SELECT userCity from ContraGO_UInformation WHERE username=" + "\"" + conName + "\"")
+    
+    result = cursor.fetchone()
+    
+    city = str(result[0])
+    
+    cursor.execute("SELECT userState from ContraGO_UInformation WHERE username=" + "\"" + conName + "\"")
+    
+    result = cursor.fetchone()
+    
+    state = str(result[0])
+    
+    cursor.execute("SELECT userZipcode from ContraGO_UInformation WHERE username=" + "\"" + conName + "\"")
+    
+    result = cursor.fetchone()
+    
+    zipcode = str(result[0])
+    
+    full_address = str(address) + ", " + str(city) + ", " + str(state) + ", " + str(zipcode) 
+    
+    return full_address
+    
 
 
 def ContraGO_Estimate_Module():
     
-    
+    def backMainpage(): 
+        """backMainpage()
+
+        Args:
+          N/A
+
+        Output:
+          .docx editable file
+        """
+        window.destroy()
+        contra_goapp.CONTRAGO_GUI.contra_go_mainpage_gui.contrago_mainpage()
+        
     
     def submitForm():
 
@@ -87,17 +192,18 @@ def ContraGO_Estimate_Module():
         Output:
           .docx editable file
         """
-
+        currentDate = date.today()
+        
         final_estimate = int(matCost.get()) + int(demoCost.get()) + int(laborCost.get())
         
         file1 = open("user.txt", "r")
         # Estimate Contract Mailmerge Input
         estimate_document.merge(
             # Contractor Information
-            ContractorName="Daniel",
-            ContractorPhoneNumber="(408)-630-5230",
-            ContractorAddress="1330 N Nascom Ave",
-            CurrentDate="11/28/21",
+            contractorName=str(getContractorName()),
+            contractorPhoneNumber=str(getContractorPhoneNumber()),
+            contractorAddress=str(getContractorAddress()),
+            CurrentDate=currentDate.strftime("%m/%d/%y"),
             # Client Information
             ClientAddress=clientAdd.get(),
             ClientName=clientName.get(),
@@ -121,8 +227,8 @@ def ContraGO_Estimate_Module():
         # Final Contract Mailmerge Input
         final_document.merge(
             # Contractor Information
-            ContractorName="Daniel Ordonez",
-            ContractorAddress="1330 N Nascom Ave",
+            ContractorName=getContractorName(),
+            ContractorAddress=getContractorAddress(),
             ContractorWarranty=warranty.get(),
             # Client Information
             EmployerAddress=full_address,
@@ -147,7 +253,9 @@ def ContraGO_Estimate_Module():
                              str(full_address + clientName.get() + "_EstimateContract.docx"),
                              str(full_address + clientName.get() + "_FinalContract.docx"))
         file1.close()
-
+        messagebox.showinfo("ContraGo - Contract Maker","Successfully Generated Your Contract, Returning to Mainpage")
+        window.destroy()
+        contra_goapp.CONTRAGO_GUI.contra_go_mainpage_gui.contrago_mainpage()
     
     def clearFields(): 
         """clearFields()
@@ -170,7 +278,10 @@ def ContraGO_Estimate_Module():
         startDate.delete(0, END)
         endDate.delete(0, END)
         jobType.delete(0, END)
-    
+        jobDes.delete("1.0", "end")
+        paymentType.delete(0, END) 
+        warranty.delete(0, END)
+        messagebox.showinfo("ContraGo - Contract Maker","All Fields Have Been Cleared")
         
 
     global window
@@ -183,6 +294,7 @@ def ContraGO_Estimate_Module():
     window.title("Contra GO - Contract Maker")
     window.geometry("1200x780")
     window.configure(bg = "#FFFFFF")
+    window.iconbitmap(contrago_favicon)
     
     
 
@@ -585,9 +697,6 @@ def ContraGO_Estimate_Module():
     )
     
     
-    
-    
-    
     """ 
     Tkinter GUI Buttons
     Buttons: 
@@ -642,7 +751,7 @@ def ContraGO_Estimate_Module():
         text="Back",
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("Hello"),
+        command=lambda: backMainpage(),
         relief="flat"
     )
     backBttn.place(

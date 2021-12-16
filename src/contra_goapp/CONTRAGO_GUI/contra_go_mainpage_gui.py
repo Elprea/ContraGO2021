@@ -4,17 +4,24 @@ This program will run tkinter GUI program that will allow the user to navigate
 through the application to either create a new contract or view previous contracts 
 tied to the users account
 
-  Typical usage example:
 
 
 """
-from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
-import sqlite3
+from tkinter import Tk, Canvas, Button
 
 from contra_goapp.CONTRAGO_GUI.contra_go_fill_form_gui import ContraGO_Estimate_Module
 
-from contra_goapp.CONTRAGO_DB.contra_go_fill_form_gui_db import getContractHistory, connect
-    
+from contra_goapp.CONTRAGO_DB.contra_go_fill_form_gui_db import getContractHistory
+
+import contra_goapp.CONTRAGO_GUI.contra_go_log_in_GUI 
+
+import os
+
+# Favicon On Tkinter Window 
+contrago_favicon = os.path.join(
+    os.path.dirname(__file__), "assets", "contrago.ico"
+)
+
 def userLogOut(): 
     
     file = open("user.txt","r+")
@@ -24,6 +31,7 @@ def userLogOut():
     file.close()
     
     window.destroy()
+    contra_goapp.CONTRAGO_GUI.contra_go_log_in_GUI.contrago_log_in()
     
     
 
@@ -68,7 +76,7 @@ def contrago_mainpage():
     window.title("ContraGO Mainpage")
     window.geometry("1200x780")
     window.configure(bg = "#FFFFFF")
-    
+    window.iconbitmap(contrago_favicon)
     
     """ 
     Tkinter Canvas Create

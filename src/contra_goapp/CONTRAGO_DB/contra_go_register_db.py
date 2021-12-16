@@ -1,6 +1,12 @@
+""" ContraGO Register Database Program
+
+This program will provide the database to the register gui in order to allow
+new user to register and create new accounts which will be added to the database 
+of users. 
+
+  
+"""
 import sqlite3
-
-
 
 
 def registerUser(username, password, userFirstName, userLastName, userAddress, userCity, userState, userZipcode, userPhoneNumber, userEmailAddress):

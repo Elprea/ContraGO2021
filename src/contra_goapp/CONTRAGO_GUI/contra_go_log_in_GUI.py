@@ -3,18 +3,27 @@
 This program will run tkinter GUI program that will allow the user to log in 
 into their existing account and also register to a new account
 
-  Typical usage example:
 
 
 """
-from tkinter import Button, Canvas, Entry, PhotoImage, Text, Tk, Toplevel, messagebox
+import os 
+
+from tkinter import Button, Canvas, Entry, Tk, messagebox
 
 from contra_goapp.CONTRAGO_DB.contra_go_log_in_db import validationUser
 
-from contra_goapp.CONTRAGO_GUI.contra_go_mainpage_gui import contrago_mainpage
+import contra_goapp.CONTRAGO_GUI.contra_go_mainpage_gui 
 
-from contra_goapp.CONTRAGO_GUI.contra_go_register_gui import contrago_register
+import contra_goapp.CONTRAGO_GUI.contra_go_register_gui 
 
+
+# Favicon On Tkinter Window 
+contrago_favicon = os.path.join(
+    os.path.dirname(__file__), "assets", "contrago.ico"
+)
+
+
+        
 def contraReg():
     
     """contrago_register()
@@ -27,7 +36,7 @@ def contraReg():
 
     """
     window.destroy()
-    contrago_register()
+    contra_goapp.CONTRAGO_GUI.contra_go_register_gui.contrago_register()
     
     
     
@@ -55,7 +64,7 @@ def valUserClose(username, password):
         file.close() 
         
         window.destroy()
-        contrago_mainpage()
+        contra_goapp.CONTRAGO_GUI.contra_go_mainpage_gui.contrago_mainpage()
         
     else: 
         
@@ -88,6 +97,7 @@ def contrago_log_in():
     window.title("ContraGO - Log In/Register")
     window.geometry("1152x700")
     window.configure(bg="#AEC0FF")
+    window.iconbitmap(contrago_favicon)
     
     
     

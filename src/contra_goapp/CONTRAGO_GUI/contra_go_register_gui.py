@@ -1,19 +1,104 @@
+""" ContraGO Register GUI Program
+
+This program will run tkinter GUI program that will allow the user to register 
+for a new account. The user will be able to create and view contract history 
+when registering an account.
 
 
-from tkinter import Tk, Canvas, Entry, Text, Button, messagebox
+"""
+from tkinter import Tk, Canvas, Entry, Button, messagebox, END
 
 from contra_goapp.CONTRAGO_DB.contra_go_register_db import registerUser
 
+import contra_goapp.CONTRAGO_GUI.contra_go_log_in_GUI
+
+import os
+
+# Favicon For Tkinter Window
+contrago_favicon = os.path.join(
+    os.path.dirname(__file__), "assets", "contrago.ico"
+)
 
 def validateRegister(username, password, userFirstName, userLastName, userAddress, userCity, userState,  userZipcode, userPhoneNumber, userEmailAddress):
-    
+   """validateRegister(username, 
+                    password, 
+                    userFirstName, 
+                    userLastName, 
+                    userAddress, 
+                    userCity, 
+                    userState, 
+                    userZipcode, 
+                    userPhoneNumber, 
+                    userEmailAddress)
+
+    Checks if username exist in the datbase 
+
+    Args:
+      username: A string value 
+      password: A string value 
+      userFirstName: A string value 
+      userLastName: A string value  
+      userAddress: A string value  
+      userCity: A string value 
+      userState: A string value 
+      userZipcode: A string value  
+      userPhoneNumber: A string value  
+      userEmailAddress: A string value 
+
+
+    """
    if registerUser(username.strip(), password.strip(), userFirstName.strip(), userLastName.strip(), userAddress.strip(), userCity.strip(), userState.strip(),  userZipcode.strip(), userPhoneNumber.strip(), userEmailAddress.strip()) == 1:
+       
        messagebox.showinfo("ContraGo - Register","Username already exist. Please enter a new username")
+       
    else: 
+       
        registerUser(username.strip(), password.strip(), userFirstName.strip(), userLastName.strip(), userAddress.strip(), userCity.strip(), userState.strip(),  userZipcode.strip(), userPhoneNumber.strip(), userEmailAddress.strip())
+       
        messagebox.showinfo("ContraGo - Register","Successfully Made Account. Please Log In")
+       
+       window.destroy()
+       
+       contra_goapp.CONTRAGO_GUI.contra_go_log_in_GUI.contrago_log_in() 
+       
+    
+def backLogIn(): 
+        """backLogIn()
+
+        Args:
+          N/A
+
+        Output:
+          .docx editable file
+        """
+        window.destroy()
+        contra_goapp.CONTRAGO_GUI.contra_go_log_in_GUI.contrago_log_in() 
+        
     
 def contrago_register():
+    
+    def clearFields(): 
+        """clearFields()
+
+        Args:
+          N/A
+
+        Output:
+          N/A
+        """
+        username.delete(0, END)
+        password.delete(0, END)
+        userEmailAddress.delete(0, END)
+        userPhoneNumber.delete(0, END)
+        userZipCode.delete(0, END)
+        userState.delete(0, END)
+        userCity.delete(0, END)
+        userAddress.delete(0, END)
+        userFirstName.delete(0, END)
+        userLastName.delete(0, END)
+        messagebox.showinfo("ContraGo - Register","All Fields Cleared")
+    
+    global window 
     
     window = Tk()
     
@@ -23,7 +108,7 @@ def contrago_register():
     window.title("ContraGO - Register")
     window.geometry("748x780")
     window.configure(bg = "#FFFFFF")
-    
+    window.iconbitmap(contrago_favicon)
     
     """ 
     Tkinter Canvas Create
@@ -95,7 +180,7 @@ def contrago_register():
         text="Clear",
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_2 clicked"),
+        command=lambda: clearFields(),
         relief="flat"
     )
     clearBttn.place(
@@ -113,7 +198,7 @@ def contrago_register():
         text="Back",
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_3 clicked"),
+        command=lambda: backLogIn(),
         relief="flat"
     )
     backBttn.place(
