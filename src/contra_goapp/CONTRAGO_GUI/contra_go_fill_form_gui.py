@@ -50,11 +50,14 @@ final_document = MailMerge(finalContract_template)
 def getContractorName(): 
     """getContractorName()
 
-        Args:
-          N/A
+         Args:
+             N/A
 
-        Output:
-          .docx editable file
+        Returns:
+            A string of current user logged in Name
+
+        Raises:
+            N/A
         """
     global conName
     
@@ -88,11 +91,14 @@ def getContractorName():
 def getContractorPhoneNumber(): 
     """getContractorPhoneNumber()
 
-        Args:
-          N/A
+         Args:
+             N/A
 
-        Output:
-          .docx editable file
+        Returns:
+            A string of current user logged in phone number
+
+        Raises:
+            N/A
         """
     file1 = open("user.txt", "r")
 
@@ -122,7 +128,7 @@ def getContractorAddress():
              N/A
 
         Returns:
-            A new string of user complete address
+            A string of concantanted address of user
 
         Raises:
             N/A

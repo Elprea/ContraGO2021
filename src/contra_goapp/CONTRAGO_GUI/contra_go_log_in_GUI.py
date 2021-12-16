@@ -70,6 +70,7 @@ def valUserClose(username, password):
         messagebox.showinfo("ContraGo Log In","Incorrect Information")
 
 
+
 def contrago_log_in(): 
     
     """contrago_log_in()

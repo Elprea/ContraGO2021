@@ -8,7 +8,7 @@ that allows user to create and view contracts tied to their account.
 
 import sqlite3
 
-from tkinter import ttk, CENTER 
+from tkinter import ttk
 
 import tkinter as tk
 
