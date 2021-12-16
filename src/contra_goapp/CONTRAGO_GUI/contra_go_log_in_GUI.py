@@ -41,8 +41,6 @@ def contraReg():
     
     
            
-        
-
 def valUserClose(username, password): 
     
     """valUserClose(username, password)
@@ -59,6 +57,7 @@ def valUserClose(username, password):
     if validationUser(username, password) == 0: 
         
         file=open("user.txt", "w") 
+        file.truncate(0)
         file.write(str(username)+"\n")
         file.write(str(password))
         file.close() 

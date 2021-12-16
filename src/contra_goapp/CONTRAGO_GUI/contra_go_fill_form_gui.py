@@ -192,6 +192,7 @@ def ContraGO_Estimate_Module():
         Output:
           .docx editable file
         """
+        
         currentDate = date.today()
         
         final_estimate = int(matCost.get()) + int(demoCost.get()) + int(laborCost.get())
