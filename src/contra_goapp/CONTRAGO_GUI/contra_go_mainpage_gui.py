@@ -8,6 +8,7 @@ tied to the users account
 
 """
 from tkinter import Tk, Canvas, Button, Entry
+from PIL import ImageTk, Image
 
 from contra_goapp.CONTRAGO_GUI.contra_go_fill_form_gui import ContraGO_Estimate_Module
 
@@ -336,16 +337,23 @@ def contrago_mainpage():
         relief = "ridge"
     )
     
+       
+    """ 
+    Tkinter Canvas Background Image 
+    """ 
+    pic = Image.open("C:\\Users\\epaul\\contrago2021\\src\\contra_goapp\\CONTRAGO_GUI\\images\\helmets.png")
+    resized = pic.resize((1400, 800), Image.ANTIALIAS)
+    bg = ImageTk.PhotoImage(resized)
+    canvas.create_image(0, 400, image=bg)
+    
     canvas.place(x = 0, y = 0)
     canvas.create_rectangle(
-        450.0,
-        0.0,
-        1200.0,
-        780.0,
+        451,
+        2,
+        1197,
+        777,
         fill="#F9ECD3",
-        outline="")
-    
-    
+        outline="#e8a854", width=5)
     
     
     """ 
@@ -358,111 +366,150 @@ def contrago_mainpage():
     """ 
     
     
+    
     viewHistoryBttn = Button(
         text="View History",
-        font=('ArialNarrow 30 bold'),
+        font=('Coda 30 bold'),
         bg="#BD8000",
-        borderwidth=0,
-        highlightthickness=0,
+        borderwidth=20,
+        fg='white',
+        activebackground="#BD8000",
         command=lambda: getContractHistory(),
-        relief="flat"
+        relief="raised"
     )
     
     viewHistoryBttn.place(
         x=546.0,
         y=401.0,
         width=557.0,
-        height=156.1621551513672
+        height=156
     )
     
     
     createContractBttn = Button(
         text="Create Contract",
-        font=('ArialNarrow 30 bold'),
+        font=('Coda 30 bold'),
         bg="#BD8000",
-        borderwidth=0,
-        highlightthickness=0,
+        fg='white',
+        borderwidth=20,
+        activebackground="#BD8000",
         command=lambda: openFillForm(),
-        relief="flat"
+        relief="raised"
     )
     createContractBttn.place(
         x=546.0,
         y=221.0,
         width=557.0,
-        height=156.1621551513672
+        height=156
     )
-    
-    
-    logOutBttn = Button(
-        text="Log Out",
-        font=('ArialNarrow 10 bold'),
-        bg="#BD8000",
-        borderwidth=0,
-        highlightthickness=0,
-        command=lambda: userLogOut(),
-        relief="flat"
-    )
-    logOutBttn.place(
-        x=10.0,
-        y=732.0,
-        width=118.0,
-        height=38.0
-    )
-    
     
     aboutBttn = Button(
-        text="About",
-        font=('ArialNarrow 15 bold'),
-        bg="#BD8000",
-        borderwidth=0,
-        highlightthickness=0,
+        text="ABOUT",
+        font=('Coda 11 bold'),
+        bg="#ffe8b3",
+        borderwidth=4,
         command=lambda: print("button_4 clicked"),
-        relief="flat"
+        relief="ridge"
     )
     aboutBttn.place(
-        x=85.0,
-        y=496.0,
-        width=200.0,
-        height=53.0
+        x=160,
+        y=460,
+        width=130,
+        height=35
+    )
+    
+    logOutBttn = Button(
+        text="LOG OUT",
+        font=('Coda 11 bold'),
+        bg="#ffe8b3",
+        borderwidth=4,
+        command=lambda: userLogOut(),
+        relief="ridge"
+    )
+    logOutBttn.place(
+        x=160,
+        y=540,
+        width=130,
+        height=35
     )
     
     userSettingBttn = Button(
-        text="User Settings",
-        font=('ArialNarrow 15 bold'),
-        bg="#BD8000",
-        borderwidth=0,
-        highlightthickness=0,
-        command=lambda: openUserSettings(),
-        relief="flat"
-    )
+       text="UPDATE ACCOUNT",
+       font=('Coda 8 bold'),
+       bg="#ffe8b3",
+       borderwidth=4,
+       command=lambda: openUserSettings(),
+       relief="ridge"
+       )
     userSettingBttn.place(
-        x=85.0,
-        y=580.0,
-        width=200.0,
-        height=53.0
-    )
+       x=160,
+       y=500,
+       width=130,
+       height=35
+       )
     
     
     """ 
     Tkinter GUI Title 
     """ 
     canvas.create_text(
-        3.0,
-        315.0,
+        92,
+        247.0,
         anchor="nw",
-        text="\n ContraGO",
-        fill="#000000",
-        font=("DancingScript Bold", 72 * -1)
+        text="Welcome",
+        fill="#474545",
+        font=("Crimson Text", 66 * -1)
+    )
+    canvas.create_text(
+        96,
+        250,
+        anchor="nw",
+        text="Welcome",
+        fill="white",
+        font=("Crimson Text", 64 * -1)
     )
     
     canvas.create_text(
-        0.0,
-        250.0,
+        202,
+        302,
         anchor="nw",
-        text="  Welcome\n       to",
-        fill="#000000",
-        font=("DancingScript Bold", 72 * -1)
+        text="to",
+        fill="#474545",
+        font=("Crimson Text", 47 * -1)
     )
+    canvas.create_text(
+        205,
+        305,
+        anchor="nw",
+        text="to",
+        fill="white",
+        font=("Crimson Text", 45 * -1)
+    )
+
+    canvas.create_text(
+            55,
+            315,
+            anchor="nw",
+            text="ContraGO",
+            fill="white",
+            font=("Dancing Script Bold", 90 * -1)
+        )
+    canvas.create_text(
+            52,
+            312,
+            anchor="nw",
+            text="ContraGO",
+            fill="black",
+            font=("Dancing Script Bold", 90 * -1)
+        )
+    canvas.create_text(
+            50,
+            310,
+            anchor="nw",
+            text="ContraGO",
+            fill="purple",
+            font=("Dancing Script Bold", 90 * -1)
+        )
     window.resizable(False, False)
     window.mainloop()
     

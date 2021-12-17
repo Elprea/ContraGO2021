@@ -6,13 +6,14 @@ when registering an account.
 
 
 """
-from tkinter import Tk, Canvas, Entry, Button, messagebox, END
+from tkinter import Tk, Canvas, Entry, Button, messagebox, PhotoImage, END
+
+import os
 
 from contra_goapp.CONTRAGO_DB.contra_go_register_db import registerUser
 
 import contra_goapp.CONTRAGO_GUI.contra_go_log_in_GUI
 
-import os
 
 # Favicon For Tkinter Window
 contrago_favicon = os.path.join(
@@ -135,18 +136,18 @@ def contrago_register():
     canvas.create_rectangle(
         0.0,
         0.0,
-        748.0,
-        62.0,
-        fill="#E8DBBF",
-        outline="")
+        1440.0,
+        75,
+        fill="#d1a862",
+        outline="#E8DBBF", width=2)
     
     canvas.create_rectangle(
         73.0,
         166.0,
         684.0,
         711.0,
-        fill="#808080",
-        outline="")
+        fill="#F8F4E8",
+        outline="#AD5F00", width=5)
     
     
     
@@ -158,13 +159,16 @@ def contrago_register():
         Back
     """ 
     registerBttn = Button(
-        font=('ArialNarrow 10 bold'),
-        bg="#C8CDFF",
         text="Register",
-        borderwidth=0,
-        highlightthickness=0,
         command=lambda: validateRegister(username.get(), password.get(), userFirstName.get(), userLastName.get(), userAddress.get(), userCity.get(), userState.get(),  userZipCode.get(), userPhoneNumber.get(), userEmailAddress.get()),
-        relief="flat"
+        highlightthickness=0,
+        font=('Coda 18'),
+        borderwidth=4,
+        activebackground='#f7edf5',
+        highlightcolor="black",
+        bg='#f7edf5',
+        fg='#210205',
+        relief="raised",
     )
     registerBttn.place(
         x=232.0,
@@ -175,26 +179,32 @@ def contrago_register():
     
     
     clearBttn = Button(
-        font=('ArialNarrow 10 bold'),
-        bg="#C8CDFF",
         text="Clear",
-        borderwidth=0,
-        highlightthickness=0,
         command=lambda: clearFields(),
-        relief="flat"
+        highlightthickness=0,
+        font=('Coda 18'),
+        borderwidth=4,
+        activebackground='#f7edf5',
+        highlightcolor="black",
+        bg='#f7edf5',
+        fg='#210205',
+        relief="raised",
     )
     clearBttn.place(
-        x=385.0,
+        x=383.0,
         y=644.0,
         width=130.0,
         height=50.0
     )
-    
-    
-    
+
+        
+    #Back Button
+    backPhoto = PhotoImage(file='C:\\Users\\epaul\\contrago2021\\src\\contra_goapp\\CONTRAGO_GUI\\images\\back-icon.png')
     backBttn = Button(
         font=('ArialNarrow 10 bold'),
-        bg="#C8CDFF",
+        image=backPhoto,
+        bg="#d1a862",
+        activebackground='#d1a862',
         text="Back",
         borderwidth=0,
         highlightthickness=0,
@@ -202,10 +212,10 @@ def contrago_register():
         relief="flat"
     )
     backBttn.place(
-        x=14.0,
-        y=8.0,
-        width=76.0,
-        height=46.0
+        x=25.0,
+        y=15.0,
+        width=50.0,
+        height=50.0
     )
     
     
@@ -216,7 +226,7 @@ def contrago_register():
         
     """
     username = Entry(
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
         highlightthickness=0
     )
@@ -233,12 +243,12 @@ def contrago_register():
         anchor="nw",
         text="Username:",
         fill="#000000",
-        font=("Coda Regular", 16 * -1)
+        font=("Coda", 16 * -1)
     )
     
     
     password = Entry(
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
         highlightthickness=0
     )
@@ -255,12 +265,12 @@ def contrago_register():
         anchor="nw",
         text="Password:",
         fill="#000000",
-        font=("Coda Regular", 16 * -1)
+        font=("Coda", 16 * -1)
     )
     
     
     userEmailAddress = Entry(
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
         highlightthickness=0
     )
@@ -277,12 +287,12 @@ def contrago_register():
         anchor="nw",
         text="E-mail address: ",
         fill="#000000",
-        font=("Coda Regular", 16 * -1)
+        font=("Coda", 16 * -1)
     )
     
     
     userPhoneNumber = Entry(
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
         highlightthickness=0
     )
@@ -299,13 +309,13 @@ def contrago_register():
         anchor="nw",
         text="Phone Number:\n",
         fill="#000000",
-        font=("Coda Regular", 16 * -1)
+        font=("Coda", 16 * -1)
     )
     
     
     
     userZipCode = Entry(
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
         highlightthickness=0
     )
@@ -322,13 +332,13 @@ def contrago_register():
         anchor="nw",
         text="Zipcode: ",
         fill="#000000",
-        font=("Coda Regular", 16 * -1)
+        font=("Coda", 16 * -1)
     )
     
     
 
     userState = Entry(
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
         highlightthickness=0
     )
@@ -345,12 +355,12 @@ def contrago_register():
         anchor="nw",
         text="State: ",
         fill="#000000",
-        font=("Coda Regular", 16 * -1)
+        font=("Coda", 16 * -1)
     )
     
     
     userCity = Entry(
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
         highlightthickness=0
     )
@@ -367,7 +377,7 @@ def contrago_register():
         anchor="nw",
         text="City: ",
         fill="#000000",
-        font=("Coda Regular", 16 * -1)
+        font=("Coda", 16 * -1)
     )
     
     
@@ -375,7 +385,7 @@ def contrago_register():
     
     
     userAddress = Entry(
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
         highlightthickness=0
     )
@@ -392,7 +402,7 @@ def contrago_register():
         anchor="nw",
         text="Address: ",
         fill="#000000",
-        font=("Coda Regular", 16 * -1)
+        font=("Coda", 16 * -1)
     )
     
     
@@ -400,7 +410,7 @@ def contrago_register():
     
     
     userLastName = Entry(
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
         highlightthickness=0
     )
@@ -417,7 +427,7 @@ def contrago_register():
         anchor="nw",
         text="Last Name:",
         fill="#000000",
-        font=("Coda Regular", 16 * -1)
+        font=("Coda", 16 * -1)
     )
     
     
@@ -426,7 +436,7 @@ def contrago_register():
     
     
     userFirstName = Entry(
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
         highlightthickness=0
     )
@@ -443,30 +453,39 @@ def contrago_register():
         anchor="nw",
         text="First Name:",
         fill="#000000",
-        font=("Coda Regular", 16 * -1)
+        font=("Coda", 16 * -1)
     )
+    
     
     """ 
     Tkinter GUI Title 
     """ 
     canvas.create_text(
-        67.0,
+        72.0,
         126.0,
         anchor="nw",
         text="User Information",
         fill="#441B00",
-        font=("AplikaziaMFW Bold", 25 * -1)
+        font=('Coda Caption ExtraBold', 25 * -1)
     )
-    
     
     canvas.create_text(
-        105.0,
-        4.0,
+        90.0,
+        3.0,
         anchor="nw",
-        text="Register",
-        fill="#585858",
-        font=("CrimsonText Regular", 50 * -1)
+        text="Contract Maker",
+        fill="black",
+        font=("Crimson Text Bold", 50 * -1)
     )
+    canvas.create_text(
+        88.0,
+        1.0,
+        anchor="nw",
+        text="Contract Maker",
+        fill="white",
+        font=("Crimson Text Bold", 50 * -1)
+    )
+    
     window.resizable(False, False)
     window.mainloop()
 

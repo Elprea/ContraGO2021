@@ -10,10 +10,9 @@ new .docx file that will outputed for the contractor to use
 from __future__ import print_function
 
 import os
-
 import sqlite3
 
-from tkinter import Button, Canvas, Entry, Text, Tk, END, messagebox
+from tkinter import Button, Canvas, Entry, Text, Tk, END, messagebox, PhotoImage
 
 from datetime import date 
 
@@ -332,18 +331,16 @@ def ContraGO_Estimate_Module():
         139.0,
         1168.0,
         758.0,
-        fill="#808080",
-        outline="")
+        fill="#F8F4E8",
+        outline="#AD5F00", width=5)
     
     canvas.create_rectangle(
         36.0,
         197.0,
         452.0,
         715.0,
-        fill="#808080",
-        outline="")
-    
-
+        fill="#F8F4E8",
+        outline="#AD5F00", width=5)
 
     
     """ 
@@ -353,47 +350,47 @@ def ContraGO_Estimate_Module():
     """
     #endDate Entry & Label
     endDate = Entry(
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
         highlightthickness=0
     )
     endDate.place(
-        x=604.0,
-        y=683.0,
-        width=144.0,
-        height=28.0
+        x=603,
+        y=668,
+        width=150,
+        height=30
     )
     
     canvas.create_text(
-        519.0,
-        686.0,
+        520,
+        671,
         anchor="nw",
         text="End Date:\n",
         fill="#000000",
-        font=("Coda Regular", 16 * -1)
+        font=("Coda", 16 * -1)
     )
     
     
     #startDate Entry & Label
     startDate = Entry(
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
         highlightthickness=0
     )
     startDate.place(
-        x=604.0,
-        y=634.0,
-        width=144.0,
-        height=28.0
+        x=603.0,
+        y=619.0,
+        width=150,
+        height=30
     )
     
     canvas.create_text(
-        512.0,
-        641.0,
+        520.0,
+        621.0,
         anchor="nw",
         text="Start Date:\n",
         fill="#000000",
-        font=("Coda Regular", 16 * -1)
+        font=("Coda", 16 * -1)
     )
     
     
@@ -401,122 +398,120 @@ def ContraGO_Estimate_Module():
     
     #demoCost Entry & Label
     demoCost = Entry(
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
-        highlightthickness=0
     )
     demoCost.place(
-        x=750.0,
+        x=819,
         y=559.0,
-        width=144.0,
-        height=28.0
+        width=150,
+        height=30
     )
     
     canvas.create_text(
-        761.0,
-        536.0,
+        834,
+        532,
         anchor="nw",
         text="Demolition Cost:",
         fill="#000000",
-        font=("Coda Regular", 16 * -1)
+        font=("Coda", 16 * -1)
     )
     
        
     
     #laborCost Entry & Label
     laborCost = Entry(
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
-        highlightthickness=0
     )
     laborCost.place(
-        x=927.0,
+        x=986,
         y=559.0,
-        width=144.0,
-        height=28.0
+        width=150,
+        height=30
     )
     
     canvas.create_text(
-        957.0,
-        536.0,
+        1020.0,
+        532.0,
         anchor="nw",
         text="Labor Cost:",
         fill="#000000",
-        font=("Coda Regular", 16 * -1)
+        font=("Coda", 16 * -1)
     )
     
     #Payment Type Entry & Label
     paymentType = Entry(
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
         highlightthickness=0
     )
     paymentType.place(
-        x=927.0,
-        y=605.0,
-        width=144.0,
-        height=28.0
+        x=986,
+        y=619,
+        width=150,
+        height=30
     )
     
     canvas.create_text(
-        820.0,
-        610.0,
+        865.0,
+        621.0,
         anchor="nw",
         text="Payment Type:",
         fill="#000000",
-        font=("Coda Regular", 16 * -1)
+        font=("Coda", 16 * -1)
     )
     
     
     
     #matCost Entry & Label
     matCost = Entry(
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
         highlightthickness=0
     )
     matCost.place(
-        x=573.0,
+        x=652,
         y=559.0,
-        width=144.0,
-        height=28.0
+        width=150,
+        height=30
     )
     
     canvas.create_text(
-        595.0,
-        536.0,
+        677,
+        532,
         anchor="nw",
         text="Material Cost:",
         fill="#000000",
-        font=("Coda Regular", 16 * -1)
+        font=("Coda", 16 * -1)
     )
-    
+     
     #Warranty Entry & Label
     warranty = Entry(
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
         highlightthickness=0
     )
     warranty.place(
-        x=500.0,
+        x=520,
         y=559.0,
-        width=50.0,
-        height=28.0
+        width=91,
+        height=30
     )
     
     canvas.create_text(
-        490.0,
-        536.0,
+        531,
+        532.0,
         anchor="nw",
         text="Warranty:",
         fill="#000000",
-        font=("Coda Regular", 16 * -1)
+        font=("Coda", 16 * -1)
     )
     
     
     #jobDes Entry & Label
     jobDes = Text(
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
         highlightthickness=0
     )
@@ -533,14 +528,14 @@ def ContraGO_Estimate_Module():
         anchor="nw",
         text="Job Description:",
         fill="#000000",
-        font=("Coda Regular", 16 * -1)
+        font=("Coda", 16 * -1)
     )
     
        
     
     #jobType Entry & Label
     jobType = Entry(
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
         highlightthickness=0
     )
@@ -557,7 +552,7 @@ def ContraGO_Estimate_Module():
         anchor="nw",
         text="Job Type:",
         fill="#000000",
-        font=("Coda Regular", 16 * -1)
+        font=("Coda", 16 * -1)
     )
     
     
@@ -567,7 +562,7 @@ def ContraGO_Estimate_Module():
     #clientPhoneN Entry & Label
     clientPhoneN = Entry(
         width =11,
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
         highlightthickness=0
     )
@@ -584,14 +579,14 @@ def ContraGO_Estimate_Module():
         anchor="nw",
         text="Client Phone Number:",
         fill="#000000",
-        font=("Coda Regular", 16 * -1)
+        font=("Coda", 16 * -1)
     )
     
     
     
     #clientState Entry & Label
     clientState = Entry(
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
         highlightthickness=0
     )
@@ -608,13 +603,13 @@ def ContraGO_Estimate_Module():
         anchor="nw",
         text="Client State:",
         fill="#000000",
-        font=("Coda Regular", 16 * -1)
+        font=("Coda", 16 * -1)
     )
     
     
     #clientZip Entry & Label
     clientZip = Entry(
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
         highlightthickness=0
     )
@@ -631,13 +626,13 @@ def ContraGO_Estimate_Module():
         anchor="nw",
         text="Client Zipcode:",
         fill="#000000",
-        font=("Coda Regular", 16 * -1)
+        font=("Coda", 16 * -1)
     )
     
     
     #clientCity Entry & Label
     clientCity = Entry(
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
         highlightthickness=0
     )
@@ -654,13 +649,13 @@ def ContraGO_Estimate_Module():
         anchor="nw",
         text="Client City:",
         fill="#000000",
-        font=("Coda Regular", 16 * -1)
+        font=("Coda", 16 * -1)
     )
     
     
     #clientAdd Entry & Label
     clientAdd = Entry(
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
         highlightthickness=0
     )
@@ -677,13 +672,13 @@ def ContraGO_Estimate_Module():
         anchor="nw",
         text="Client Address:",
         fill="#000000",
-        font=("Coda Regular", 16 * -1)
+        font=("Coda", 16 * -1)
     )
     
     
     #clientName Entry & Label
     clientName = Entry(
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
         highlightthickness=0
     )
@@ -700,7 +695,7 @@ def ContraGO_Estimate_Module():
         anchor="nw",
         text="Client Name:",
         fill="#000000",
-        font=("Coda Regular", 16 * -1)
+        font=("Coda", 16 * -1)
     )
     
     
@@ -711,50 +706,52 @@ def ContraGO_Estimate_Module():
         Clear
         Back 
     """ 
-    
-    
     clearBttn = Button(
-        font=('ArialNarrow 10 bold'),
-        bg="#C8CDFF",
         text="Clear",
-        borderwidth=0,
         highlightthickness=0,
         command=lambda: clearFields(),
-        relief="flat"
+        font=('Coda 18'),
+        borderwidth=4,
+        activebackground='#f7edf5',
+        highlightcolor="black",
+        bg='#f7edf5',
+        fg='#210205',
+        relief="raised",
     )
     clearBttn.place(
-        x=981.0,
-        y=648.0,
+        x=865.0,
+        y=686.0,
         width=130.0,
         height=50.0
     )
-    
-    
     
     #Generate Button
     genBttn = Button(
-        font=('ArialNarrow 10 bold'),
-        bg="#C8CDFF",
+        font=('Coda 18'),
         text="Generate",
-        borderwidth=1,
-        highlightthickness=2,
+        borderwidth=4,
+        activebackground='#f7edf5',
+        highlightthickness=0,
         highlightcolor="black",
         command=lambda: submitForm(),
-        relief="flat"
+        bg='#f7edf5',
+        fg='#210205',
+        relief="raised",
     )
     genBttn.place(
-        x=824.0,
-        y=648.0,
+        x=1006.0,
+        y=685.0,
         width=130.0,
         height=50.0
     )
     
-    
-    
     #Back Button
+    backPhoto = PhotoImage(file='C:\\Users\\epaul\\contrago2021\\src\\contra_goapp\\CONTRAGO_GUI\\images\\back-icon.png')
     backBttn = Button(
         font=('ArialNarrow 10 bold'),
-        bg="#C8CDFF",
+        image=backPhoto,
+        bg="#d1a862",
+        activebackground='#d1a862',
         text="Back",
         borderwidth=0,
         highlightthickness=0,
@@ -762,12 +759,12 @@ def ContraGO_Estimate_Module():
         relief="flat"
     )
     backBttn.place(
-        x=14.0,
-        y=8.0,
-        width=62.0,
-        height=46.0
+        x=25.0,
+        y=15.0,
+        width=50.0,
+        height=50.0
     )
-    
+
     """ 
     Tkinter GUI Title 
     """ 
@@ -777,24 +774,32 @@ def ContraGO_Estimate_Module():
         anchor="nw",
         text="Client & Contractor Details",
         fill="#441B00",
-        font=("CodaCaption ExtraBold", 25 * -1)
+        font=('Coda Caption ExtraBold', 25 * -1)
     )
     
     canvas.create_rectangle(
         0.0,
         0.0,
         1440.0,
-        62.0,
-        fill="#E8DBBF",
-        outline="")
+        75,
+        fill="#d1a862",
+        outline="#E8DBBF", width=2)
     
     canvas.create_text(
-        90.0,
-        3.0,
+        90,
+        3,
         anchor="nw",
         text="Contract Maker",
-        fill="#000000",
-        font=("ArialNarrow 10 bold", 50 * -1)
+        fill="black",
+        font=("Crimson Text Bold", 50 * -1)
+    )
+    canvas.create_text(
+        88.0,
+        1.0,
+        anchor="nw",
+        text="Contract Maker",
+        fill="white",
+        font=("Crimson Text Bold", 50 * -1)
     )
     
     canvas.create_text(
@@ -803,8 +808,9 @@ def ContraGO_Estimate_Module():
         anchor="nw",
         text="Contractor Measurements",
         fill="#441B00",
-        font=("CodaCaption ExtraBold", 25 * -1)
+        font=("Coda Caption ExtraBold", 25 * -1)
     )
+
     
 
     

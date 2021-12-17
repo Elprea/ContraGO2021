@@ -6,9 +6,8 @@ into their existing account and also register to a new account
 
 
 """
-import os 
-
-from tkinter import Button, Canvas, Entry, Tk, messagebox
+import os
+from tkinter import Button, Canvas, Entry, Tk, messagebox, PhotoImage
 
 from contra_goapp.CONTRAGO_DB.contra_go_log_in_db import validationUser
 
@@ -106,92 +105,115 @@ def contrago_log_in():
     """ 
     canvas = Canvas(
         window,
-        bg="#AEC0FF",
         height=700,
         width=1152,
+        bg="gray",
         bd=0,
         highlightthickness=0,
         relief="ridge",
     )
-    
     canvas.place(x=0, y=0)
-    canvas.create_rectangle(0.0, 0.0, 1109.0, 700.0, fill="#AEC0FF", outline="")
     
+    """
+    background
+    """
+    bg = PhotoImage(file="C:\\Users\\epaul\\contrago2021\\src\\contra_goapp\\CONTRAGO_GUI\\images\\bg.png")
+    canvas.create_image(500, 350, image=bg)
+    
+    #ContraGo
     canvas.create_text(
-        609.0,
-        75.0,
-        anchor="nw",
+        405,
+        105,
         text="ContraGO",
-        fill="#000000",
-        font=("AplikaziaMFW Bold", 50 * -1),
-    )
-    
-    canvas.create_text(
-        609.0,
-        142.0,
         anchor="nw",
-        text="Log In",
-        fill="#000000",
-        font=("AplikaziaMFW Bold", 36 * -1),
+        fill="white",
+        font=("Dancing Script BOLD", 100 * -1),
+    )
+    canvas.create_text(
+        400,
+        100,
+        text="ContraGO",
+        anchor="nw",
+        fill="purple",
+        font=("Dancing Script BOLD", 100 * -1),
     )
     
+    #Log In
+    canvas.create_text(
+        550,
+        280,
+        text="LOG-IN",
+        anchor="nw",
+        fill="#000000",
+        font=("Coda", 22 * -1),
+    )
     
-    
+        
+    """
+    Function for Entry fields
+    """
+    def entry_click(e):
+        if username.get() == 'Username':
+            username.delete(0, "end")
+            username.insert(0, '')
+            username.config(show="", fg="black")
+
+    def focusout(e):
+        if username.get() == '':
+            username.insert(0, 'Username')
+            username.config(show="", fg="gray")
+       
+    def entry_click_pass(e):     
+        if password.get() == 'Password':
+            password.delete(0, "end")
+            password.insert(0, '')
+            password.config(show="*", fg="black")
+    def focusout_pass(e):
+        if password.get() == '':
+            password.config(show="", fg="gray")
+            password.insert(0, 'Password')
+            
     
     """ 
     Tkinter GUI Entry Fields 
     Entry Fields: 
         
     """
+    
     username = Entry(
-        bd=0,
-        bg="#6A79FD",
-        highlightthickness=0
+        bd=4,
+        fg="gray",
+        bg="white",
+        highlightthickness=0,
+        font=("Coda", 16 * -1),
     )
+    username.insert(0, 'Username')
+    username.bind('<FocusIn>', entry_click)
+    username.bind('<FocusOut>', focusout)
     username.place(
-        x=643.0,
-        y=328.0,
+        x=430,
+        y=320,
         width=320.0,
         height=34.0
     )
     
     
     password = Entry(
-        show="*",
-        bd=0,
-        bg="#6A79FD",
-        highlightthickness=0
+        bd=4,
+        fg="gray",
+        bg="white",
+        highlightthickness=0,
+        font=("Coda", 16 * -1),
     )
+    password.insert(0, 'Password')
+    password.bind('<FocusIn>', entry_click_pass)
+    password.bind('<FocusOut>', focusout_pass)
     password.place(
-        x=643.0,
-        y=430.0,
+        x=430,
+        y=370,
         width=320.0,
         height=34.0
     )
-    
-    
-    """ 
-    Tkinter GUI Title 
-    """ 
-    canvas.create_text(
-        609.0,
-        284.0,
-        anchor="nw",
-        text="Username",
-        fill="#000000",
-        font=("AplikaziaMFW Bold", 24 * -1),
-    )
-    
-    canvas.create_text(
-        609.0,
-        383.0,
-        anchor="nw",
-        text="Password\n",
-        fill="#000000",
-        font=("AplikaziaMFW Bold", 24 * -1),
-    )
-    
-    
     
     
     """ 
@@ -202,37 +224,50 @@ def contrago_log_in():
     """ 
     # Log In Button
     loginBttn = Button(
-        text="Submit",
-        borderwidth=0,
-        highlightthickness=0,
+        text="SUBMIT",
+        font=("Coda", 16 * -1),
+        bg='#f7edf5',
+        fg='#210205',
         command=lambda: valUserClose(username.get().strip(), password.get().strip()),
-        relief="flat",
+        relief="raised",
     )
     
     loginBttn.place(
-        x=640.079833984375, 
-        y=508.1396484375, 
-        width=133.920166015625, 
-        height=46.8603515625
+        x=640, 
+        y=412, 
+        width=110, 
+        height=40
     )
     
-    
-    
+    def entry_click(e):
+        if username.get() == 'Username':
+            username.delete(0, "end")
+            username.insert(0, '')
+
+    def focusout(e):
+        if username.get() == '':
+            username.insert(0, 'Username')
+            
     # Register Button
     registerBttn = Button(
-        text="Register",
+        text="No account yet? Register here.",
         borderwidth=0,
         highlightthickness=0,
         command=lambda: contraReg(), 
         relief="flat",
+        fg="#1f96ff",
+        bg="#E5D3E1",
+        activebackground="#E5D3E1",
+        font=("Coda 10 italic underline"),
     )
     
     registerBttn.place(
-        x=830.079833984375, 
-        y=508.1396484375, 
-        width=133.920166015625, 
-        height=46.8603515625
+        x=415, 
+        y=415, 
+        width=200, 
+        height=15
     )
+
     
     
     window.resizable(False, False)
