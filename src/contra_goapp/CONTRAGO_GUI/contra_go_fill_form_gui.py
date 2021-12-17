@@ -39,6 +39,9 @@ finalContract_template = os.path.join(
     os.path.dirname(__file__), "assets", "ContraGO_FinalContract.docx"
 )
 
+backIcon = os.path.join(
+    os.path.dirname(__file__), "assets", "back-icon.png"
+)
 
 estimate_document = MailMerge(estimate_template)
 
@@ -746,7 +749,7 @@ def ContraGO_Estimate_Module():
     )
     
     #Back Button
-    backPhoto = PhotoImage(file='C:\\Users\\epaul\\contrago2021\\src\\contra_goapp\\CONTRAGO_GUI\\images\\back-icon.png')
+    backPhoto = PhotoImage(file=backIcon)
     backBttn = Button(
         font=('ArialNarrow 10 bold'),
         image=backPhoto,
@@ -765,7 +768,7 @@ def ContraGO_Estimate_Module():
         height=50.0
     )
 
-    """ 
+    """
     Tkinter GUI Title 
     """ 
     canvas.create_text(

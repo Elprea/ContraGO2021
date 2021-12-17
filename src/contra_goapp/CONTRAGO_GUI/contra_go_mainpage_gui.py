@@ -9,22 +9,20 @@ tied to the users account
 """
 from tkinter import Tk, Canvas, Button, Entry
 from PIL import ImageTk, Image
-
 from contra_goapp.CONTRAGO_GUI.contra_go_fill_form_gui import ContraGO_Estimate_Module
 
 from contra_goapp.CONTRAGO_DB.contra_go_fill_form_gui_db import getContractHistory
 
 import contra_goapp.CONTRAGO_DB.contra_go_log_in_db
 
-
-
 import os
-
 # Favicon On Tkinter Window 
 contrago_favicon = os.path.join(
     os.path.dirname(__file__), "assets", "contrago.ico"
 )
-
+helmetImage = os.path.join(
+    os.path.dirname(__file__), "assets", "helmets.png"
+)
 
 def backBttnMainpage(): 
     """backBttnMainpage()
@@ -341,7 +339,8 @@ def contrago_mainpage():
     """ 
     Tkinter Canvas Background Image 
     """ 
-    pic = Image.open("C:\\Users\\epaul\\contrago2021\\src\\contra_goapp\\CONTRAGO_GUI\\images\\helmets.png")
+
+    pic = Image.open(helmetImage)
     resized = pic.resize((1400, 800), Image.ANTIALIAS)
     bg = ImageTk.PhotoImage(resized)
     canvas.create_image(0, 400, image=bg)

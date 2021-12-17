@@ -6,7 +6,9 @@ into their existing account and also register to a new account
 
 
 """
+
 import os
+os.chdir("C:\\Users\\epaul\\contrago2021\\src")
 from tkinter import Button, Canvas, Entry, Tk, messagebox, PhotoImage
 
 from contra_goapp.CONTRAGO_DB.contra_go_log_in_db import validationUser
@@ -20,7 +22,9 @@ import contra_goapp.CONTRAGO_GUI.contra_go_register_gui
 contrago_favicon = os.path.join(
     os.path.dirname(__file__), "assets", "contrago.ico"
 )
-
+bgImage = os.path.join(
+    os.path.dirname(__file__), "assets", "bg.png"
+)
 
         
 def contraReg():
@@ -117,7 +121,7 @@ def contrago_log_in():
     """
     background
     """
-    bg = PhotoImage(file="C:\\Users\\epaul\\contrago2021\\src\\contra_goapp\\CONTRAGO_GUI\\images\\bg.png")
+    bg = PhotoImage(file=bgImage)
     canvas.create_image(500, 350, image=bg)
     
     #ContraGo

@@ -19,6 +19,9 @@ import contra_goapp.CONTRAGO_GUI.contra_go_log_in_GUI
 contrago_favicon = os.path.join(
     os.path.dirname(__file__), "assets", "contrago.ico"
 )
+backIcon = os.path.join(
+    os.path.dirname(__file__), "assets", "back-icon.png"
+)
 
 def validateRegister(username, password, userFirstName, userLastName, userAddress, userCity, userState,  userZipcode, userPhoneNumber, userEmailAddress):
    """validateRegister(username, 
@@ -199,7 +202,7 @@ def contrago_register():
 
         
     #Back Button
-    backPhoto = PhotoImage(file='C:\\Users\\epaul\\contrago2021\\src\\contra_goapp\\CONTRAGO_GUI\\images\\back-icon.png')
+    backPhoto = PhotoImage(file=backIcon)
     backBttn = Button(
         font=('ArialNarrow 10 bold'),
         image=backPhoto,
