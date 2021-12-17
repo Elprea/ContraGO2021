@@ -8,7 +8,7 @@ into their existing account and also register to a new account
 """
 
 import os
-os.chdir("C:\\Users\\epaul\\contrago2021\\src")
+
 from tkinter import Button, Canvas, Entry, Tk, messagebox, PhotoImage
 
 from contra_goapp.CONTRAGO_DB.contra_go_log_in_db import validationUser
