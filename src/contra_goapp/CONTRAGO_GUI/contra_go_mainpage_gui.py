@@ -7,8 +7,12 @@ tied to the users account
 
 
 """
-from tkinter import Tk, Canvas, Button, Entry, Label
+from tkinter import Tk, Canvas, Button, Entry, Label, PhotoImage
+
 from PIL import ImageTk, Image
+
+from tkinter.messagebox import askyesno
+
 from contra_goapp.CONTRAGO_GUI.contra_go_fill_form_gui import ContraGO_Estimate_Module
 
 from contra_goapp.CONTRAGO_DB.contra_go_fill_form_gui_db import getContractHistory
@@ -16,14 +20,19 @@ from contra_goapp.CONTRAGO_DB.contra_go_fill_form_gui_db import getContractHisto
 import contra_goapp.CONTRAGO_DB.contra_go_log_in_db
 
 import os
+
 # Favicon On Tkinter Window 
 contrago_favicon = os.path.join(
     os.path.dirname(__file__), "assets", "contrago.ico"
 )
+
 helmetImage = os.path.join(
     os.path.dirname(__file__), "assets", "helmets.png"
 )
 
+backIcon = os.path.join(
+    os.path.dirname(__file__), "assets", "back-icon.png"
+)
 def backBttnMainpage(): 
     """backBttnMainpage()
     
@@ -79,7 +88,8 @@ def makeUserSettingsChanges(columnName, updateChange, username):
             N/A
         """
     contra_goapp.CONTRAGO_DB.contra_go_log_in_db.updateUserInfo(columnName,updateChange, username)
-    
+
+        
 def userLogOut(): 
     """userLogOut()
     
@@ -94,14 +104,15 @@ def userLogOut():
         Raises:
             N/A
         """
-    file = open("user.txt","r+")
-    
-    file.truncate(0)
-    
-    file.close()
-    
-    window.destroy()
-    contra_goapp.CONTRAGO_GUI.contra_go_log_in_GUI.contrago_log_in()
+    answer = askyesno(title='confirmation',
+                      message='Are you sure you want to logout?')
+    if answer:
+        file = open("user.txt","r+")
+        file.truncate(0)
+        file.close()
+        
+        window.destroy()
+        contra_goapp.CONTRAGO_GUI.contra_go_log_in_GUI.contrago_log_in()
     
     
 
@@ -163,11 +174,27 @@ def updateUserSettings():
     canvas.place(x = 0, y = 0)
     canvas.create_rectangle(
         0.0,
-        37.0,
-        500.0,
-        500.0,
+        0.0,
+        1440.0,
+        55,
+        fill="#d1a862",
+        outline="#E8DBBF", width=2)
+    
+    canvas.create_rectangle(
+        0.0,
+        57.0,
+        748.0,
+        780.0,
         fill="#F8F4E8",
         outline="")
+    
+    canvas.create_rectangle(
+        15,
+        70,
+        470,
+        205,
+        fill="#F9ECD3",
+        outline="#e8a854", width=5)
     
     """ 
     Tkinter GUI Buttons
@@ -176,14 +203,18 @@ def updateUserSettings():
         backBttn
     """ 
     updateChange = Button(
-        font=('ArialNarrow 10 bold'),
-        bg="#C8CDFF",
         text="Update",
-        borderwidth=0,
         highlightthickness=0,
         command=lambda: makeUserSettingsChanges(str(enterColumn.get().strip()), str(enterItem.get().strip()), str(conName.strip())),
-        relief="flat"
+        font=('Coda 18'),
+        borderwidth=4,
+        activebackground='#f7edf5',
+        highlightcolor="black",
+        bg='#f7edf5',
+        fg='#210205',
+        relief="raised",
     )
+    
     updateChange.place(
         x=170.0,
         y=380.0,
@@ -191,9 +222,12 @@ def updateUserSettings():
         height=50.0
     )
     
+    #Back Button
+    backPhoto = PhotoImage(file=backIcon)
     backBttn = Button(
-        font=('ArialNarrow 10 bold'),
-        bg="#C8CDFF",
+        image=backPhoto,
+        bg="#d1a862",
+        activebackground='#d1a862',
         text="Back",
         borderwidth=0,
         highlightthickness=0,
@@ -201,100 +235,111 @@ def updateUserSettings():
         relief="flat"
     )
     backBttn.place(
-        x=10,
-        y=5,
-        width=74.6417236328125,
-        height=34.33673095703125
+        x=25,
+        y=1,
+        width=50,
+        height=50
     )
-   
+    
     """ 
     Tkinter GUI Entry Fields 
     Entry Fields: 
         
     """
     enterColumn = Entry(
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
         highlightthickness=0
     )
     enterColumn.place(
         x=212.0,
-        y=190.0,
+        y=230.0,
         width=197.0,
         height=32.0
     )
     
     
     enterItem = Entry(
-        bd=0,
+        bd=2,
         bg="#FFFFFF",
         highlightthickness=0
     )
     enterItem.place(
-        x=224.0,
-        y=285.0,
+        x=212.0,
+        y=280.0,
         width=197.0,
         height=32.0
     )
-    
-    canvas.create_rectangle(
-        0.0,
-        2.0,
-        500.0,
-        41.0,
-        fill="#E8DBBF",
-        outline="")
-    
    
     """ 
     Tkinter GUI Title 
     """ 
     canvas.create_text(
-        95.0,
-        10.0,
+        85.0,
+        2,
         anchor="nw",
         text="Update User Settings",
-        fill="#585858",
-        font=("CrimsonText Regular", 24 * -1)
+        fill="black",
+        font=("Crimson Text Bold", 38 * -1)
     )
     
     canvas.create_text(
+        83.0,
+        0,
+        anchor="nw",
+        text="Update User Settings",
+        fill="white",
+        font=("Crimson Text Bold", 38 * -1)
+    )
+    
+    
+    canvas.create_text(
         27.0,
-        197.0,
+        230.0,
         anchor="nw",
         text="Enter Item Name:",
         fill="#000000",
-        font=("CourierPrime Regular", 18 * -1)
-    )
-    
-    canvas.create_text(
-        24.0,
-        292.0,
-        anchor="nw",
-        text="Enter Item Change:",
-        fill="#000000",
-        font=("CourierPrime Regular", 18 * -1)
+        font=("Coda", 18 * -1)
     )
     
     canvas.create_text(
         27.0,
-        74.0,
+        280.0,
         anchor="nw",
-        text="Please use the following naming scheme to select what you want changed in\n Enter Item Name Entry Field Below:",
+        text="New Item Name:",
         fill="#000000",
-        font=("CourierPrime Regular", 12 * -1)
+        font=("Coda", 18 * -1)
     )
     
     canvas.create_text(
         27.0,
-        100.0,
+        75,
+        anchor="nw",
+        text="INSTRUCTION:",
+        fill="#000000",
+        font=("Coda Caption ExtraBold", 20 * -1)
+    )
+    
+    canvas.create_text(
+        27.0,
+        113.0,
+        anchor="nw",
+        text="Please use the following naming scheme to select what you want change.\n\nThe following are the list of item names:",
+        fill="#000000",
+        font=("Coda", 12 * -1)
+    )
+    
+    canvas.create_text(
+        27.0,
+        130.0,
         anchor="nw",
         text="\n\nusername, password, userFirstName, userLastName, userAddress, userCity,\nuserState, userZipcode, userPhoneNumber, userEmailAddress",
         fill="#000000",
-        font=("CourierPrime Regular", 12 * -1)
+        font=("Coda", 12 * -1)
     )
     userSettings.resizable(False, False)
     userSettings.mainloop()
+
 
 def contrago_mainpage(): 
     
@@ -405,11 +450,10 @@ def contrago_mainpage():
     def openNewWindow():
     
        window = Tk()
-        
        window.title("About Us")
-        
        window.geometry("500x200")
-        
+       window.iconbitmap(contrago_favicon)
+       
        canvas = Canvas(
        window,
        bg = "#FFFFFF",
