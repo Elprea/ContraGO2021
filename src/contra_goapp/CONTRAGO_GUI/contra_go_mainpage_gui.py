@@ -7,7 +7,7 @@ tied to the users account
 
 
 """
-from tkinter import Tk, Canvas, Button, Entry
+from tkinter import Tk, Canvas, Button, Entry, Label
 from PIL import ImageTk, Image
 from contra_goapp.CONTRAGO_GUI.contra_go_fill_form_gui import ContraGO_Estimate_Module
 
@@ -402,12 +402,38 @@ def contrago_mainpage():
         height=156
     )
     
+    def openNewWindow():
+    
+       window = Tk()
+        
+       window.title("About Us")
+        
+       window.geometry("500x200")
+        
+       canvas = Canvas(
+       window,
+       bg = "#FFFFFF",
+       height = 780,
+       width = 1200,
+       bd = 0,
+       highlightthickness = 0,
+       relief = "ridge"
+       )
+        
+       aboutUs = """The creators of ContraGO are Daniel Ordonez, Elson Real, Skylee Leal, and Luela.
+          We are all students at University of Silicon Valley and created this software 
+          as a final project for our software engineering class."""
+       label = Label(window, text=aboutUs)
+       label.pack(ipadx=10,ipady=10)
+       
+       window.mainloop()
+    
     aboutBttn = Button(
         text="ABOUT",
         font=('Coda 11 bold'),
         bg="#ffe8b3",
         borderwidth=4,
-        command=lambda: print("button_4 clicked"),
+        command = openNewWindow,
         relief="ridge"
     )
     aboutBttn.place(
