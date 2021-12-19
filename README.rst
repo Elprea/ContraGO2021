@@ -48,7 +48,7 @@ This project uses `pre-commit`_, please make sure to install it before making an
 changes::
 
     pip install pre-commit
-    cd CONTRA_GOAPP
+    cd contrago2021
     pre-commit install
 
 It is a good idea to update the hooks to the latest version::
