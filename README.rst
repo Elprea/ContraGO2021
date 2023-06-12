@@ -66,7 +66,6 @@ This project has been set up using PyScaffold 4.1.1. For details and usage
 information on PyScaffold see https://pyscaffold.org/.
 
 Run ContraGO App
-
 Run all commands in PowerShell inside the parent ContraGO repository:: 
       Write-Host cd ContraGO 2021
       Write-Host pip install -e .
