@@ -67,12 +67,12 @@ information on PyScaffold see https://pyscaffold.org/.
 
 Run ContraGO App
 Run all commands in PowerShell inside the parent ContraGO repository:: 
-      Write-Host cd ContraGO 2021
-      Write-Host pip install -e .
-      Write-Host tox -e build 
-      Write-Host python setup.py bdist_wheel
-      Write-Host pip install C:\Users\danie\ContraGO2021\dist\ContraGO-0.0.post1.dev38+g7e73988-py3-none-any.whl
-      Write-Host start_contrago
+      cd ContraGO 2021
+      pip install -e .
+      tox -e build 
+      python setup.py bdist_wheel
+      pip install C:\Users\danie\ContraGO2021\dist\ContraGO-0.0.post1.dev38+g7e73988-py3-none-any.whl
+      start_contrago
       
       
    
